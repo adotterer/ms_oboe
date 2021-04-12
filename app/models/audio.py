@@ -1,6 +1,5 @@
 from .db import db
 
-
 class Audio(db.Model):
     __tablename__ = 'audios'
 
