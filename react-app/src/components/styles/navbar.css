@@ -1,0 +1,6 @@
+nav li {
+  display: inline-block;
+  margin: 1.2em 0;
+  padding: 0.2em 1em 0.2em 1em;
+  border: 1px solid salmon;
+}
