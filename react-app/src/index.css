@@ -1,0 +1,11 @@
+html,
+h1,
+h2,
+h3,
+div,
+span,
+p,
+span {
+  font-weight: 300;
+  font-family: Helvetica, Arial, sans-serif;
+}
