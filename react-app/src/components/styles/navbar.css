@@ -12,8 +12,11 @@ li a:visited,
 li a:active {
   color: #9b9994;
   text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 3px solid white;
 }
 li a:hover {
   color: #dcc333;
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  border-bottom: 3px solid #dcc333;
 }
