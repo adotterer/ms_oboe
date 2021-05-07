@@ -8,6 +8,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Header from "./components/Header";
 import Container from "./components/Container";
+import Bio from "./components/Bio";
 
 import { authenticate } from "./services/auth";
 
@@ -32,40 +33,38 @@ function App() {
   return (
     <BrowserRouter>
       <Container>
+        <Header />
+        <NavBar setAuthenticated={setAuthenticated} />
         <Switch>
-          <Route path="/">
-            <Header />
-            <NavBar setAuthenticated={setAuthenticated} />
+          <Route path="/" exact>
+            <Bio />
           </Route>
-          <Route path="/login" exact={true}>
+
+          <Route path="/login" exact>
             <LoginForm
               authenticated={authenticated}
               setAuthenticated={setAuthenticated}
             />
           </Route>
-          <Route path="/sign-up" exact={true}>
+          <Route path="/sign-up" exact>
             <SignUpForm
               authenticated={authenticated}
               setAuthenticated={setAuthenticated}
             />
           </Route>
-          <ProtectedRoute
-            path="/users"
-            exact={true}
-            authenticated={authenticated}
-          >
+          <ProtectedRoute path="/users" exact authenticated={authenticated}>
             <UsersList />
           </ProtectedRoute>
           <ProtectedRoute
             path="/users/:userId"
-            exact={true}
+            exact
             authenticated={authenticated}
           >
             <User />
           </ProtectedRoute>
           {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
-        </ProtectedRoute> */}
+            <h1>My Home Page</h1>
+          </ProtectedRoute> */}
         </Switch>
       </Container>
     </BrowserRouter>

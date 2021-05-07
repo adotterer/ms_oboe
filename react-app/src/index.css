@@ -1,3 +1,5 @@
+@import url("https://use.typekit.net/gau7dsu.css");
+
 html,
 h1,
 h2,
@@ -7,6 +9,46 @@ span,
 p,
 span {
   font-weight: 300;
-  font-family: Helvetica, Arial, sans-serif;
+
   color: rgb(26, 26, 26);
+  margin: 0;
+  /* padding: 0; */
+}
+
+h1 {
+  font-size: 3em;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3 {
+  font-family: ambroise-std, serif;
+  font-weight: 400;
+}
+
+div,
+p,
+span,
+article {
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  /* font-family: brandon-grotesque, sans-serif; */
+
+  font-weight: 200;
+
+  font-style: normal;
+}
+
+p {
+  margin: 1em 0 1em 0;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+}
+
+article {
+  font-size: 0.9em;
 }
