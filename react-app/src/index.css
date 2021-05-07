@@ -9,11 +9,10 @@ span,
 p,
 span {
   font-weight: 300;
-
   color: rgb(26, 26, 26);
   margin: 0;
-  /* padding: 0; */
 }
+
 * {
   transition: all 200ms linear 2ms;
 }
