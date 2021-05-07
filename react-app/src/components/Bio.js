@@ -9,7 +9,7 @@ export default function Bio() {
         <img src={bio} id="img__profilepic" />
       </div>
       <article id="article__bio">
-        <h2>Oboe and English Horn</h2>
+        <h2>Oboe & English Horn</h2>
         <p>
           Matthew Shipp lives in Philadelphia and works as a freelance oboist in
           Philadelphia and New York City. Mr. Shipp has performed with The
@@ -19,10 +19,7 @@ export default function Bio() {
           performed with The Philadelphia Orchestra both domestically and
           internationally in Taiwan, Japan, and South Korea. Recent engagements
           include performances at Carnegie Hall, Suntory Hall, NHK Hall, Seoul
-          Arts Center, and the National Performing Arts Center of Taiwan. He has
-          been fortunate enough to collaborate with highly esteemed conductors
-          such as Yannick Nézet-Séguin, Kensho Watanabe, Cristian Macelaru,
-          Andreas Delfs, Michelle Merrill, Carl St. Clair, and Rossen Milanov.
+          Arts Center, and the National Performing Arts Center of Taiwan.
         </p>
         <p>
           As a chamber musician, Matthew performed the Beethoven Wind Octet Op.

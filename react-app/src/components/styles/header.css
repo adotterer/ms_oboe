@@ -1,3 +1,15 @@
 #div__header {
-  /* color: red; */
+  min-width: 100%;
+}
+#div__header::after {
+  content: "";
+  width: 40%;
+  height: 8em;
+  background-image: url(../oboe_vector.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+  position: absolute;
+  top: 8%;
+  right: 9%;
 }
