@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function Home() {
-  return <h1>Matthew Shipp oboe</h1>;
+  return (
+    <div id="div__home">
+      <h1>Matthew Shipp</h1>
+    </div>
+  );
 }
