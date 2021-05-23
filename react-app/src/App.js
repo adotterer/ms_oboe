@@ -52,6 +52,9 @@ function App() {
               setAuthenticated={setAuthenticated}
             />
           </Route>
+          <Route path="/gallery">gallery</Route>
+          <Route path="/audio">audio</Route>
+          <Route path="/video">video</Route>
           <ProtectedRoute path="/users" exact authenticated={authenticated}>
             <UsersList />
           </ProtectedRoute>
