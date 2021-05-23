@@ -9,6 +9,7 @@ import User from "./components/User";
 import Header from "./components/Header";
 import Container from "./components/Container";
 import Bio from "./components/Bio";
+import { AudioPlayer } from "./components/ContentReel"; // react-app/src/components/ContentReel.js
 
 import { authenticate } from "./services/auth";
 
@@ -53,7 +54,9 @@ function App() {
             />
           </Route>
           <Route path="/gallery">gallery</Route>
-          <Route path="/audio">audio</Route>
+          <Route path="/audio">
+            <AudioPlayer />
+          </Route>
           <Route path="/video">video</Route>
           <ProtectedRoute path="/users" exact authenticated={authenticated}>
             <UsersList />
