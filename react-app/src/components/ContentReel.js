@@ -3,9 +3,9 @@ import MilhaudAudio from "./audio/Milhaud2.wav";
 
 export function AudioPlayer(src) {
   return (
-    <div>
-      <caption>Milhaud</caption>
+    <figure>
       <audio controls src={MilhaudAudio}></audio>
-    </div>
+      <figcaption>Milhaud</figcaption>
+    </figure>
   );
 }
