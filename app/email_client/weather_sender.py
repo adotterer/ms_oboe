@@ -5,7 +5,7 @@ import schedule
 import os
 import ezgmail
 
-ezgmail.init(tokenFile="./token.json",  credentialsFile="./credentials.json")
+# ezgmail.init(tokenFile="./token.json",  credentialsFile="./credentials.json")
 
 
 print("Logged into email: ", ezgmail.LOGGED_IN)
