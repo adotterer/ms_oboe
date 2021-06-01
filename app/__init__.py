@@ -12,6 +12,7 @@ from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 
 from .config import Config
+from .email_client.weather_sender import send_email
 
 app = Flask(__name__)
 
@@ -39,9 +40,10 @@ CORS(app)
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
-# Therefore, we need to make sure that in production any 
+# Therefore, we need to make sure that in production any
 # request made over http is redirected to https.
 # Well.........
+
 
 @app.before_request
 def https_redirect():
@@ -71,3 +73,5 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+send_email()
