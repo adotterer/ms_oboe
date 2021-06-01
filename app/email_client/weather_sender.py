@@ -4,18 +4,7 @@ import json
 import schedule
 import os
 import ezgmail
-GMAIL_TOKEN = os.environ.get("GMAIL_TOKEN")
-GMAIL_CRED = os.environ.get("GMAIL_CRED")
 
-with open("./token.json", "w+") as outfile:
-    json.dump(GMAIL_TOKEN, outfile)
-
-
-with open("./credentials.json", "w+") as outfile:
-    json.dump(GMAIL_CRED, outfile)
-
-
-cred_file.write(GMAIL_CRED)
 ezgmail.init(tokenFile="./token.json",  credentialsFile="./credentials.json")
 
 
