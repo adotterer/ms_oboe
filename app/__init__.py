@@ -73,16 +73,3 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
-
-
-GMAIL_TOKEN = os.environ.get("GMAIL_TOKEN")
-GMAIL_CRED = os.environ.get("GMAIL_CRED")
-
-with open("token.json", "w+") as outfile:
-    outfile.write(GMAIL_TOKEN)
-    print(outfile)
-
-with open("credentials.json", "w+") as outfile:
-    outfile.write(GMAIL_CRED)
-
-send_email()
