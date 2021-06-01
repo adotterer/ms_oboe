@@ -6,7 +6,13 @@ from .weather_getter import write_memo
 
 GMAIL_TOKEN = os.environ.get("GMAIL_TOKEN")
 GMAIL_CRED = os.environ.get("GMAIL_CRED")
-ezgmail.init(tokenFile=GMAIL_TOKEN,  credentialsFile=GMAIL_CRED)
+
+token_file = open("./token.json", "w+")
+token_file.write(GMAIL_TOKEN)
+
+cred_file = open("./credentials.json", "w+")
+cred_file.write(GMAIL_CRED)
+ezgmail.init(tokenFile="./token.json",  credentialsFile="./credentials.json")
 
 print("Logged into email: ", ezgmail.LOGGED_IN)
 location = "Granite Falls, WA 98252"
