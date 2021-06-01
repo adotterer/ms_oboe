@@ -12,7 +12,7 @@ from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 
 from .config import Config
-from .email_client.weather_sender import send_email
+
 
 app = Flask(__name__)
 
