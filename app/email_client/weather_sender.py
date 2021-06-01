@@ -1,18 +1,23 @@
-import ezgmail
-import schedule
-import time
-import os
 from .weather_getter import write_memo
-
+import time
+import json
+import schedule
+import os
+import ezgmail
 GMAIL_TOKEN = os.environ.get("GMAIL_TOKEN")
 GMAIL_CRED = os.environ.get("GMAIL_CRED")
 
-token_file = open("./token.json", "w+")
-token_file.write(GMAIL_TOKEN)
+with open("./token.json", "w+") as outfile:
+    json.dump(GMAIL_TOKEN, outfile)
 
-cred_file = open("./credentials.json", "w+")
+
+with open("./credentials.json", "w+") as outfile:
+    json.dump(GMAIL_CRED, outfile)
+
+
 cred_file.write(GMAIL_CRED)
 ezgmail.init(tokenFile="./token.json",  credentialsFile="./credentials.json")
+
 
 print("Logged into email: ", ezgmail.LOGGED_IN)
 location = "Granite Falls, WA 98252"
