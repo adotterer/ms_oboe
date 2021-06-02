@@ -2,7 +2,6 @@
   display: flex;
   width: 100%;
   height: 100%;
-  /* border: 1px solid purple; */
 }
 
 #div__profilepic {
@@ -19,7 +18,6 @@
 #article__bio {
   text-align: justify;
   width: 100%;
-  /* border: 1px solid black; */
   padding: 0.8rem;
 }
 img {
