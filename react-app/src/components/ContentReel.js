@@ -4,19 +4,21 @@ import MilhaudAudio from "./audio/Milhaud2.wav";
 
 export function AudioPlayer(src) {
   return (
-    <figure id="audio__grid">
-      <figcaption class="audio__title_composer">
-        <span class="black__bg">La Création du monde</span>
+    <figure className="audio__grid">
+      <figcaption className="audio__title_composer">
+        <span className="black__bg">La Création du monde</span>
         <div>
-          <span class="black__bg composer">Milhaud 1892-1974)</span>
+          <span className="black__bg composer">Darius Milhaud (1892-1974)</span>
         </div>
       </figcaption>
-      <div class="audio__player">
+      <div className="audio__player">
         <audio controls src={MilhaudAudio}></audio>
       </div>
-      <figcaption class="audio__performers">
-        <span class="black__bg">Matthew Shipp, oboe</span>
+      <figcaption className="audio__performers">
+        <span className="black__bg">Matthew Shipp, oboe</span>
       </figcaption>
     </figure>
   );
 }
+
+// TODO: fetch all the audios, make a AudioPlayer for each one

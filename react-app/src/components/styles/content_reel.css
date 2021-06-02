@@ -1,10 +1,10 @@
-#audio__grid {
+.audio__grid {
   /* display: grid; */
-  max-width: 24em;
+  max-width: 20em;
   /* height: 100%; */
   /* grid-template-columns: 20rem; */
   /* grid-template-rows: 1fr 2fr 1fr; */
-  padding: 3px;
+  padding: 1em;
   background-color: rgb(235, 235, 235);
   border: 1px solid rgb(46, 46, 46);
   border-radius: 15px;
@@ -32,6 +32,7 @@
 
 .audio__player {
   grid-row-start: 2;
+  padding: 6px 0;
   /* text-align: center ; */
   /* border: 1px solid pink; */
 }
