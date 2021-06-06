@@ -8,10 +8,21 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from app.api.aws3 import *
+from werkzeug.utils import secure_filename
+# from werkzeug.datastructures import FileStorage
 
 from .seeds import seed_commands
 
 from .config import Config
+
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png',
+                      'jpg', 'jpeg', 'gif', 'wav', 'mp3', 'mp4'}
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 app = Flask(__name__)
@@ -73,3 +84,32 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+
+@app.route('/upload', methods=["POST"])
+def upload_file():
+    if "user_file" not in request.files:
+        return "no user_file key in request.files"
+
+    file = request.files["user_file"]
+
+    """
+        These attributes are also available
+
+        file.filename               # The actual name of the file
+        file.content_type
+        file.content_length
+        file.mimetype
+
+    """
+
+    if file.filename == "":
+        return "Please select a file"
+
+    if file and allowed_file(file.filename):
+        file.filename = secure_filename(file.filename)
+        output = upload_file_to_s3(file, app.config["S3_BUCKET"])
+        return str(output)
+
+    else:
+        return redirect("/")

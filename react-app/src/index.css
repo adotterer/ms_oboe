@@ -30,7 +30,7 @@ span {
 } */
 
 * {
-  transition: all 200ms linear 2ms;
+  transition: all 200ms ease-in 2ms;
 }
 
 ul {
