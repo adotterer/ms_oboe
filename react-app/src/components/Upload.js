@@ -1,24 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export function Upload() {
   const [title, setTitle] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
+  // const [formData, setFormData] = useState(new FormData());
+  let formData = new FormData();
+
+  useEffect(() => {
+    formData.append("file", selectedFile);
+    console.log(formData, "formData");
+  }, [selectedFile]);
 
   const submit = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData();
+    console.log("selected file--->", selectedFile);
     formData.append("title", title);
-    formData.append("selectedFile", selectedFile);
-    console.log(title, "title");
-    console.log(selectedFile, "selectedFile");
-    console.log(formData);
-    // const response = await window.fetch("/api/upload/", {
-    //   headers: { "Content-type": "application/json" },
-    //   method: "POST",
-    //   body: formData,
-    // });
-    // console.log(await response.json(), "response json");
+    selectedFile && formData.append("file", selectedFile, "myfile.wav");
+
+    console.log("form data", formData);
+    const response = await fetch("/api/upload/", {
+      // headers: { "Content-type": "application/json" },
+      method: "POST",
+      body: formData,
+    });
+    console.log(await response.json(), "response json");
   };
 
   return (
@@ -30,7 +35,10 @@ export function Upload() {
         type="text"
         placeholder=""
         value={title}
-        onChange={({ target: { value } }) => setTitle(value)}
+        onChange={({ target: { value } }) => {
+          // formData.append("title", value);
+          setTitle(value);
+        }}
         required
       />
       <input
@@ -38,7 +46,6 @@ export function Upload() {
         type="file"
         accept="wav/mp3/aiff"
         onChange={(e) => {
-          console.log("35", e.target.files[0]);
           setSelectedFile(e.target.files[0]);
         }}
       />

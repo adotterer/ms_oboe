@@ -8,9 +8,11 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
-from app.api.aws3 import *
+from .api.upload_routes import upload_routes
+from .api.aws3 import *
 from werkzeug.utils import secure_filename
 # from werkzeug.datastructures import FileStorage
+
 
 from .seeds import seed_commands
 
@@ -43,6 +45,7 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(upload_routes, url_prefix='/api/upload')
 db.init_app(app)
 Migrate(app, db)
 
@@ -86,30 +89,34 @@ def react_root(path):
     return app.send_static_file('index.html')
 
 
-@app.route('/upload', methods=["POST"])
-def upload_file():
-    if "user_file" not in request.files:
-        return "no user_file key in request.files"
+# @app.route('/api/upload', methods=["POST"])
+# def upload_file():
+#     payload = request.get_json()
+#     print(payload, "payload")
+#     form = UploadForm()
+#     print("form", form)
+    # if "user_file" not in request.files:
+    #     return "no user_file key in request.files"
 
-    file = request.files["user_file"]
+    # file = request.files["user_file"]
+    # print(file, "file!")
+    # """
+    #     These attributes are also available
 
-    """
-        These attributes are also available
+    #     file.filename               # The actual name of the file
+    #     file.content_type
+    #     file.content_length
+    #     file.mimetype
 
-        file.filename               # The actual name of the file
-        file.content_type
-        file.content_length
-        file.mimetype
+    # """
 
-    """
+    # if file.filename == "":
+    #     return "Please select a file"
 
-    if file.filename == "":
-        return "Please select a file"
+    # if file and allowed_file(file.filename):
+    #     file.filename = secure_filename(file.filename)
+    #     output = upload_file_to_s3(file, app.config["S3_BUCKET"])
+    #     return str(output)
 
-    if file and allowed_file(file.filename):
-        file.filename = secure_filename(file.filename)
-        output = upload_file_to_s3(file, app.config["S3_BUCKET"])
-        return str(output)
-
-    else:
-        return redirect("/")
+    # else:
+    #     return redirect("/")
