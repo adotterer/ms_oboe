@@ -5,21 +5,16 @@ export function Upload() {
   const [selectedFile, setSelectedFile] = useState("");
   // const [formData, setFormData] = useState(new FormData());
   let formData = new FormData();
-
-  useEffect(() => {
-    formData.append("file", selectedFile);
-    console.log(formData, "formData");
-  }, [selectedFile]);
+  console.dir(fetch);
 
   const submit = async (e) => {
     e.preventDefault();
-    console.log("selected file--->", selectedFile);
+    console.log("selected File", selectedFile);
     formData.append("title", title);
-    selectedFile && formData.append("file", selectedFile, "myfile.wav");
-
-    console.log("form data", formData);
+    formData.append("file", selectedFile, "myfile.wav");
     const response = await fetch("/api/upload/", {
-      // headers: { "Content-type": "application/json" },
+      // CANNOT HAVE HEADERS FOR UPLOADING FILES!!
+      // https://muffinman.io/blog/uploading-files-using-fetch-multipart-form-data/
       method: "POST",
       body: formData,
     });
@@ -36,7 +31,6 @@ export function Upload() {
         placeholder=""
         value={title}
         onChange={({ target: { value } }) => {
-          // formData.append("title", value);
           setTitle(value);
         }}
         required
@@ -45,8 +39,13 @@ export function Upload() {
         name="file_upload"
         type="file"
         accept="wav/mp3/aiff"
-        onChange={(e) => {
-          setSelectedFile(e.target.files[0]);
+        onChange={({
+          target: {
+            files: [file],
+          },
+        }) => {
+          console.log(file, "line46");
+          setSelectedFile(file);
         }}
       />
       <button type="submit">Submit</button>
