@@ -17,7 +17,6 @@ export function Upload() {
       method: "POST",
       body: formData,
     });
-    console.log(await response.json(), "response json");
   };
 
   return (

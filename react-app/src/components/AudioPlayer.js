@@ -3,7 +3,7 @@ import "./styles/content_reel.css";
 import MilhaudAudio from "./audio/Milhaud2.wav";
 import { Upload } from "./Upload";
 
-export function AudioPlayer(src) {
+export function AudioPlayer({ src, musicInfo }) {
   return (
     <>
       <Upload />

@@ -9,6 +9,7 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.upload_routes import upload_routes
+from .api.audio_routes import audio_routes
 from .api.aws3 import *
 from werkzeug.utils import secure_filename
 # from werkzeug.datastructures import FileStorage
@@ -46,6 +47,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(upload_routes, url_prefix='/api/upload')
+app.register_blueprint(audio_routes, url_prefix='/api/audio')
 db.init_app(app)
 Migrate(app, db)
 
