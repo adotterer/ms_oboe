@@ -13,3 +13,12 @@
   top: 8%;
   right: 9%;
 }
+
+@media only screen and (max-width: 768px) {
+  #div__header::after {
+    transform: rotate(90deg);
+    width: 25%;
+    right: -20px;
+    top: 1.8em;
+  }
+}

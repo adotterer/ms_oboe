@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 *.icloud
 app/email_client/weather_sender.py
+.vscode/

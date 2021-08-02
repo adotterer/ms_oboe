@@ -7,9 +7,10 @@ upload_routes = Blueprint('upload', __name__)
 @upload_routes.route('/',  methods=['POST'])
 @login_required
 def upload_file():
-    print(request.headers)
-    print("current user".ljust(20, ".") + current_user.get_id())
-    print("uploaded file".ljust(20, ".") + str(request.files["file"]))
+
+    print("current user id ".ljust(30, ".") + " " + current_user.get_id())
+    print("uploaded file".ljust(30, ".") +
+          " " + str(request.files["file"]))
     print("*".center(40, "*"))
     print("*".center(40, "*"))
 

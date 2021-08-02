@@ -5,7 +5,6 @@ export function Upload() {
   const [selectedFile, setSelectedFile] = useState("");
   // const [formData, setFormData] = useState(new FormData());
   let formData = new FormData();
-  console.dir(fetch);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -52,3 +51,5 @@ export function Upload() {
     </form>
   );
 }
+
+[1,2,3].reverse()

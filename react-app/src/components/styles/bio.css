@@ -18,8 +18,14 @@
 #article__bio {
   text-align: justify;
   width: 100%;
-  padding: 0.8rem;
+  /* padding: 0.8rem; */
 }
 img {
   width: 80%;
+}
+
+@media only screen and (max-width: 768px) {
+  #div__profilepic {
+    display: none;
+  }
 }
