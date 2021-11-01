@@ -3,13 +3,16 @@ import React, { useState, useEffect } from "react";
 export function Upload() {
   const [title, setTitle] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
-  // const [formData, setFormData] = useState(new FormData());
+  const [composer, setComposer] = useState("");
+  const [performers, setPerformers] = useState("");
   let formData = new FormData();
 
   const submit = async (e) => {
     e.preventDefault();
     console.log("selected File", selectedFile);
     formData.append("title", title);
+    formData.append("composer", composer);
+    formData.append("performers", performers);
     formData.append("file", selectedFile, "myfile.wav");
     fetch("/api/upload/", {
       // CANNOT HAVE HEADERS FOR UPLOADING FILES!!
@@ -17,7 +20,10 @@ export function Upload() {
       method: "POST",
       body: formData,
     })
-      .then((res) => res.json())
+      .then((res) => {
+        formData = new FormData();
+        return res.json();
+      })
       .then((data) => console.log(data));
   };
 
@@ -27,14 +33,33 @@ export function Upload() {
         <audio controls src={URL.createObjectURL(selectedFile)}></audio>
       )}
       <input
+        name="title"
         type="text"
-        placeholder=""
+        placeholder="title"
         value={title}
         onChange={({ target: { value } }) => {
           setTitle(value);
         }}
         required
       />
+
+      <input
+        name="composer"
+        placeholder="composer"
+        type="text"
+        onChange={({ target: { value } }) => {
+          setComposer(value);
+        }}
+      />
+      <input
+        name="performers"
+        placeholder="performers"
+        type="text"
+        onChange={({ target: { value } }) => {
+          setPerformers(value);
+        }}
+      />
+
       <input
         name="file_upload"
         type="file"
@@ -51,5 +76,3 @@ export function Upload() {
     </form>
   );
 }
-
-[1, 2, 3].reverse();
