@@ -101,7 +101,7 @@ There is a layer in the Dockerfile that will install psycopg2 (not binary) for u
 
 # Bonus
 
-Updating tables:
+Updating tables. [Source](https://newbedev.com/target-database-is-not-up-to-date)
 
 ```shell
 $ flask db stamp head  # To set the revision in the database to the head, without performing any migrations. You can change head to the required change you want.
