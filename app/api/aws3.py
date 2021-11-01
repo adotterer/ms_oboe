@@ -6,7 +6,10 @@ from app.config import Config
 S3_KEY = Config.S3_BUCKET
 S3_SECRET = Config.S3_SECRET
 S3_BUCKET = Config.S3_BUCKET
+BUCKET_NAME = "mshippoboe"
 
+bucket_location = boto3.client('s3').get_bucket_location(Bucket=BUCKET_NAME)
+# Bucket must be in params
 
 s3 = boto3.client(
     "s3",
@@ -34,4 +37,4 @@ def upload_file_to_s3(file, bucket_name, acl="public-read"):
         print("Something Happened: ", e)
         return e
 
-    return "{}{}".format(app.config["S3_LOCATION"], file.filename)
+    return "https://{}.s3.{}.amazonaws.com/{}".format(BUCKET_NAME, bucket_location['LocationConstraint'], file.filename)

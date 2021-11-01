@@ -11,12 +11,14 @@ export function Upload() {
     console.log("selected File", selectedFile);
     formData.append("title", title);
     formData.append("file", selectedFile, "myfile.wav");
-    const response = await fetch("/api/upload/", {
+    fetch("/api/upload/", {
       // CANNOT HAVE HEADERS FOR UPLOADING FILES!!
       // https://muffinman.io/blog/uploading-files-using-fetch-multipart-form-data/
       method: "POST",
       body: formData,
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
   return (
@@ -51,4 +53,4 @@ export function Upload() {
   );
 }
 
-[1,2,3].reverse()
+[1, 2, 3].reverse();
