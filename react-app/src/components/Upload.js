@@ -44,7 +44,6 @@ export function Upload() {
             files: [file],
           },
         }) => {
-          console.log(file, "line46");
           setSelectedFile(file);
         }}
       />
