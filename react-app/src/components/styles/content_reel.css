@@ -59,7 +59,7 @@
 
 .form__upload {
   margin: 0 auto;
-  width: 80%;
+  /* width: 80%; */
 
   display: flex;
   justify-content: space-around;
@@ -76,11 +76,11 @@
 
 .form__upload label + input {
   float: right;
-  text-align: left;
+  width: 50%;
   line-height: 1.5em;
   font-size: 1.1em;
   margin: 0.2em;
-  padding: 0.25em;
+  padding: 0.35em;
   border: 0;
   border-bottom: 0.1em solid rgb(156, 156, 156);
 }
@@ -90,7 +90,6 @@
 }
 .form__upload label + input:focus,
 .form__upload label + input:active {
-  border-radius: 5px;
   outline: none;
   background-color: rgba(177, 177, 177, 0.2);
 }
@@ -100,7 +99,7 @@
 }
 
 .form__fields {
-  flex: 1 1 60%;
+  flex: 1 0 70%;
   text-align: center;
   /* display: inline-flex;
   flex-direction: column; */
@@ -113,5 +112,5 @@
 }
 
 .audio_preview {
-  flex: 1 1 40%;
+  flex: 1 1 30%;
 }
