@@ -28,51 +28,59 @@ export function Upload() {
   };
 
   return (
-    <form className="form__upload" onSubmit={submit}>
-      {selectedFile && (
-        <audio controls src={URL.createObjectURL(selectedFile)}></audio>
-      )}
-      <input
-        name="title"
-        type="text"
-        placeholder="title"
-        value={title}
-        onChange={({ target: { value } }) => {
-          setTitle(value);
-        }}
-        required
-      />
+    <>
+      <form className="form__upload" onSubmit={submit}>
+        <div className="audio_preview">
+          {selectedFile && (
+            <audio controls src={URL.createObjectURL(selectedFile)}></audio>
+          )}
+        </div>
+        <div className="form__fields">
+          <label htmlFor="title">Title</label>
+          <input
+            name="title"
+            type="text"
+            placeholder="title"
+            value={title}
+            onChange={({ target: { value } }) => {
+              setTitle(value);
+            }}
+            required
+          />
+          <label htmlFor="composer">Composer</label>
+          <input
+            name="composer"
+            placeholder="composer"
+            type="text"
+            onChange={({ target: { value } }) => {
+              setComposer(value);
+            }}
+          />
+          <label htmlFor="Performers">Performer(s)</label>
+          <input
+            name="performers"
+            placeholder="performers"
+            type="text"
+            onChange={({ target: { value } }) => {
+              setPerformers(value);
+            }}
+          />
 
-      <input
-        name="composer"
-        placeholder="composer"
-        type="text"
-        onChange={({ target: { value } }) => {
-          setComposer(value);
-        }}
-      />
-      <input
-        name="performers"
-        placeholder="performers"
-        type="text"
-        onChange={({ target: { value } }) => {
-          setPerformers(value);
-        }}
-      />
-
-      <input
-        name="file_upload"
-        type="file"
-        accept="wav/mp3/aiff"
-        onChange={({
-          target: {
-            files: [file],
-          },
-        }) => {
-          setSelectedFile(file);
-        }}
-      />
-      <button type="submit">Submit</button>
-    </form>
+          <input
+            name="file_upload"
+            type="file"
+            accept="wav/mp3/aiff"
+            onChange={({
+              target: {
+                files: [file],
+              },
+            }) => {
+              setSelectedFile(file);
+            }}
+          />
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </>
   );
 }

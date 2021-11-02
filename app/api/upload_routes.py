@@ -10,10 +10,6 @@ upload_routes = Blueprint('upload', __name__)
 @login_required
 def upload_file():
 
-    # print("current user id ".ljust(30, ".") + " " + current_user.get_id())
-    # print("uploaded file".ljust(30, ".") +
-    #       " " + str(request.files["file"]))
-    print("form--->", request.form)
     try:
         img_url = upload_file_to_s3(request.files["file"], "mshippoboe")
         title = request.form['title']
@@ -34,7 +30,7 @@ def upload_file():
     except Exception as e:
         print("error uploading")
         return {
-            "response": "ERROR"
+            "response": "Unable to upload"
         }
 
     print("*".center(40, "*"))
