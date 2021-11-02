@@ -31,6 +31,7 @@ span {
 
 * {
   transition: all 200ms ease-in 2ms;
+  box-sizing: border-box;
 }
 
 ul {

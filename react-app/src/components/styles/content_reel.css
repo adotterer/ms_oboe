@@ -41,8 +41,6 @@
   grid-row-start: 1;
   font-size: 1.1rem;
   font-weight: 500;
-
-  /* border: 1px solid green; */
 }
 
 .audio__performers {
@@ -62,30 +60,58 @@
 .form__upload {
   margin: 0 auto;
   width: 80%;
-  border: 1px solid black;
+
   display: flex;
   justify-content: space-around;
 }
 .form__upload label {
-  border: 1px solid red;
-  justify-content: end;
+  float: left;
+  text-align: left;
+
   line-height: 1.5em;
+  font-size: 1.3em;
+  margin: 0.2em;
+  width: 20%;
 }
 
 .form__upload label + input {
-  border: 1px solid peru;
+  float: right;
+  text-align: left;
+  line-height: 1.5em;
+  font-size: 1.1em;
+  margin: 0.2em;
+  padding: 0.25em;
+  border: 0;
+  border-bottom: 0.1em solid rgb(156, 156, 156);
+}
+
+.form__upload label + input + br {
+  clear: both;
+}
+.form__upload label + input:focus,
+.form__upload label + input:active {
+  border-radius: 5px;
+  outline: none;
+  background-color: rgba(177, 177, 177, 0.2);
 }
 
 .form__upload input[type="file"] {
   padding: 5px;
-  border: 5px solid chartreuse;
 }
 
 .form__fields {
   flex: 1 1 60%;
+  text-align: center;
+  /* display: inline-flex;
+  flex-direction: column; */
+}
+
+.form__fields button {
+  width: 7em;
+  font-size: 1.2em;
+  margin: 0 auto;
 }
 
 .audio_preview {
   flex: 1 1 40%;
-  border: 1px solid green;
 }
