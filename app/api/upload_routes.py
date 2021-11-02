@@ -30,6 +30,7 @@ def upload_file():
         print(extension, "extension")
         pretty_composer = prettifyComposer(composer)
         new_file.filename = f"audio_{new_id}_{pretty_composer}.{extension[1]}"
+        # example ---------> "audio_:id_brahms.wav"
         img_url = upload_file_to_s3(request.files["file"], "mshippoboe")
         new_upload.URL = img_url
         db.session.commit()
