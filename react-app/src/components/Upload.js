@@ -1,9 +1,5 @@
 import React, { useState, useMemo } from "react";
 
-// function AudioPreview(selectedFile) {
-
-// }
-
 export function Upload() {
   const [title, setTitle] = useState("");
   const [selectedFile, setSelectedFile] = useState();
