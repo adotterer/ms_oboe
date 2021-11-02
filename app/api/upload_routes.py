@@ -6,7 +6,6 @@ from .utils import prettifyComposer
 
 upload_routes = Blueprint('upload', __name__)
 
-
 @upload_routes.route('/',  methods=['POST'])
 @login_required
 def upload_file():
@@ -26,11 +25,10 @@ def upload_file():
         db.session.commit()
 
         new_id = new_upload.id
-        extension = new_file.filename.split(".")
-        print(extension, "extension")
+        _filename, extension = new_file.filename.split(".")
         pretty_composer = prettifyComposer(composer)
-        new_file.filename = f"audio_{new_id}_{pretty_composer}.{extension[1]}"
-        # example ---------> "audio_:id_brahms.wav"
+        new_file.filename = f"audio_{new_id}_{pretty_composer}.{extension}"
+        # example ---------> "audio_21_brahms.wav"
         img_url = upload_file_to_s3(request.files["file"], "mshippoboe")
         new_upload.URL = img_url
         db.session.commit()
@@ -48,5 +46,5 @@ def upload_file():
     except Exception as e:
         print("error uploading", e)
         return {
-            "response": "Unable to upload"
+            "error": "Unable to upload"
         }
