@@ -47,6 +47,7 @@ export function Upload() {
             }}
             required
           />
+          <br />
           <label htmlFor="composer">Composer</label>
           <input
             name="composer"
@@ -56,6 +57,7 @@ export function Upload() {
               setComposer(value);
             }}
           />
+          <br />
           <label htmlFor="Performers">Performer(s)</label>
           <input
             name="performers"

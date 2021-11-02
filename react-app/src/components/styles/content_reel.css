@@ -69,6 +69,7 @@
 .form__upload label {
   border: 1px solid red;
   justify-content: end;
+  line-height: 1.5em;
 }
 
 .form__upload label + input {
