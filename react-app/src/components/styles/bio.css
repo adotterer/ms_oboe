@@ -1,23 +1,20 @@
 #div__bio_container {
   display: flex;
-  width: 100%;
+  margin: 0 5em;
   height: 100%;
 }
 
 #div__profilepic {
-  /* border: 1px solid green; */
-  max-width: 20em;
+  flex: 1 1 70em;
+  margin-top: 1.4em;
   height: 100%;
   width: fit-content;
-  padding: 5px;
-  align-self: center;
   vertical-align: middle;
-  text-align: center;
 }
 
 #article__bio {
   text-align: justify;
-  width: 100%;
+  /* width: 100%; */
   /* padding: 0.8rem; */
 }
 img {
@@ -27,5 +24,8 @@ img {
 @media only screen and (max-width: 768px) {
   #div__profilepic {
     display: none;
+  }
+  #div__bio_container {
+    margin: 0 0.2em;
   }
 }

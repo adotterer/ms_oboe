@@ -10,7 +10,6 @@ p,
 span {
   font-weight: 300;
   color: rgb(26, 26, 26);
-  margin: 0;
 }
 
 /* body::before {
@@ -32,6 +31,7 @@ span {
 * {
   transition: all 200ms ease-in 2ms;
   box-sizing: border-box;
+  /* height: 0; */
 }
 
 ul {
@@ -67,9 +67,14 @@ p {
 
 html {
   width: 100vw;
-  height: 100vh;
 }
 
+body,
+html {
+  /* margin: 0;
+  padding: 0; */
+  height: fit-content;
+}
 article {
   font-size: 0.9em;
 }
