@@ -10,12 +10,13 @@
 .track__list li {
   list-style-type: none;
   background-color: rgb(247, 247, 247);
-  padding: 0.3em;
+  padding: 0.5em;
   border: 1px solid rgb(255, 255, 255);
   transition: border 0.1s linear;
   cursor: pointer;
   font-size: 1.2em;
   line-height: 1.4em;
+  height: fit-content;
 }
 
 .track__list li:hover {
@@ -116,12 +117,11 @@
 }
 
 .form__upload {
-  margin: 0 auto;
-  /* width: 80%; */
-
   display: flex;
   justify-content: space-around;
+  margin: 0 5em;
 }
+
 .form__upload label {
   float: left;
   text-align: left;

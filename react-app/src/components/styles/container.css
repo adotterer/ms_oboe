@@ -23,7 +23,7 @@
   padding-bottom: 1.8em;
   border-bottom: 1px solid whitesmoke;
 }
-#div__container ul li {
+#div__container > ul > li {
   display: inline-flex;
   text-align: center;
   justify-content: center;
