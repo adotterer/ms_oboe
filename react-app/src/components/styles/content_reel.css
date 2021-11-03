@@ -92,8 +92,6 @@
 .audio__player {
   grid-row-start: 2;
   padding: 6px 0;
-  /* text-align: center ; */
-  /* border: 1px solid pink; */
 }
 
 .audio__title_composer {
