@@ -12,3 +12,5 @@ const SelectedAudioContext = createContext({
   selectedAudio: defaultContext,
   setSelectedAudio: () => {},
 });
+
+export default SelectedAudioContext;

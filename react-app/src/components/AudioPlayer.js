@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./styles/content_reel.css";
 import MilhaudAudio from "./audio/Milhaud2.wav";
 import { Upload } from "./Upload";
+import SelectedAudioContext from "./context/SelectedAudioContext";
 
 export function AudioPlayer({ src, musicInfo }) {
   const [tracklists, setTracklists] = useState([]);
+  const { selectedAudio, setSelectedAudio } = useContext(SelectedAudioContext);
+
   useEffect(() => {
     fetch("/api/audio/all")
       .then((res) => res.json())
@@ -18,7 +21,10 @@ export function AudioPlayer({ src, musicInfo }) {
           {tracklists &&
             tracklists.map((tracklist) => {
               return (
-                <li key={tracklist.id}>
+                <li
+                  key={tracklist.id}
+                  onClick={() => setSelectedAudio(tracklist)}
+                >
                   <i>{tracklist.title}</i> - {tracklist.composer}
                   <figcaption>{tracklist.performers}</figcaption>
                 </li>
@@ -26,22 +32,24 @@ export function AudioPlayer({ src, musicInfo }) {
             })}
         </ul>
 
-        <figure className="audio__grid">
-          <figcaption className="audio__title_composer">
-            <span className="black__bg">La Création du monde</span>
-            <div>
-              <span className="black__bg composer">
-                Darius Milhaud (1892-1974)
-              </span>
+        {selectedAudio && (
+          <figure className="audio__grid">
+            <figcaption className="audio__title_composer">
+              <span className="black__bg">{selectedAudio.title}</span>
+              <div>
+                <span className="black__bg composer">
+                  {selectedAudio.composer}
+                </span>
+              </div>
+            </figcaption>
+            <div className="audio__player">
+              <audio controls src={selectedAudio.URL}></audio>
             </div>
-          </figcaption>
-          <div className="audio__player">
-            <audio controls src={MilhaudAudio}></audio>
-          </div>
-          <figcaption className="audio__performers">
-            <span className="black__bg">Matthew Shipp, oboe</span>
-          </figcaption>
-        </figure>
+            <figcaption className="audio__performers">
+              <span className="black__bg">{selectedAudio.performers}</span>
+            </figcaption>
+          </figure>
+        )}
       </div>
     </>
   );
