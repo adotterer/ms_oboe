@@ -13,7 +13,6 @@ export function Upload() {
 
   const submit = async (e) => {
     e.preventDefault();
-    console.log("selected File", selectedFile);
     formData.append("title", title);
     formData.append("composer", composer);
     formData.append("performers", performers);

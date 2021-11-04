@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/content_reel.css";
 import MilhaudAudio from "./audio/Milhaud2.wav";
 import { Upload } from "./Upload";
 
 export function AudioPlayer({ src, musicInfo }) {
+  const [tracklists, setTracklists] = useState([]);
+  useEffect(() => {
+    fetch("/api/audio/all")
+      .then((res) => res.json())
+      .then((fetchedTracklists) => setTracklists(fetchedTracklists));
+  }, [tracklists]);
   return (
     <>
       <Upload />
       <div className="list__and__player">
         <ul className="track__list">
-          <li>
-            <i>La Création du monde</i> - Darius Milhaud (1892-1974)
-            <figcaption>Matthew Shipp, oboe</figcaption>
-          </li>
+          {tracklists &&
+            tracklists.map((tracklist) => {
+              return (
+                <li key={tracklist.id}>
+                  <i>{tracklist.title}</i> - {tracklist.composer}
+                  <figcaption>{tracklist.performers}</figcaption>
+                </li>
+              );
+            })}
         </ul>
 
         <figure className="audio__grid">
