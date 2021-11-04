@@ -6,6 +6,8 @@
 .track__list {
   flex: 1 1 60%;
   padding: 1em;
+  display: flex;
+  flex-direction: column;
 }
 .track__list li {
   width: 100%;
