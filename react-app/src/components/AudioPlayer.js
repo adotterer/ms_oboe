@@ -5,13 +5,15 @@ import { Upload } from "./Upload";
 import SelectedAudioContext from "./context/SelectedAudioContext";
 
 export function AudioPlayer({ src, musicInfo }) {
-  const [tracklists, setTracklists] = useState([]);
+  const [tracklists, setTracklists] = useState();
   const { selectedAudio, setSelectedAudio } = useContext(SelectedAudioContext);
 
   useEffect(() => {
-    fetch("/api/audio/all")
-      .then((res) => res.json())
-      .then((fetchedTracklists) => setTracklists(fetchedTracklists));
+    if (!tracklists) {
+      fetch("/api/audio/all")
+        .then((res) => res.json())
+        .then((fetchedTracklists) => setTracklists(fetchedTracklists));
+    }
   }, [tracklists]);
   return (
     <>

@@ -10,12 +10,16 @@ import Header from "./components/Header";
 import Container from "./components/Container";
 import Bio from "./components/Bio";
 import { AudioPlayer } from "./components/AudioPlayer"; // react-app/src/components/ContentReel.js
+import SelectedAudioContext, {
+  defaultContext,
+} from "./components/context/SelectedAudioContext";
 
 import { authenticate } from "./services/auth";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [selectedAudio, setSelectedAudio] = useState(defaultContext);
 
   useEffect(() => {
     (async () => {
@@ -34,44 +38,49 @@ function App() {
   return (
     <BrowserRouter>
       <Container>
-        <Header />
-        <NavBar setAuthenticated={setAuthenticated} />
-        <Switch>
-          <Route path="/" exact>
-            <Bio />
-          </Route>
+        <SelectedAudioContext.Provider
+          value={{ selectedAudio, setSelectedAudio }}
+        >
+          <Header />
+          <NavBar setAuthenticated={setAuthenticated} />
+          <Switch>
+            <Route path="/" exact>
+              <Bio />
+            </Route>
 
-          <Route path="/login" exact>
-            <LoginForm
+            <Route path="/login" exact>
+              <LoginForm
+                authenticated={authenticated}
+                setAuthenticated={setAuthenticated}
+              />
+            </Route>
+            <Route path="/sign-up" exact>
+              <SignUpForm
+                authenticated={authenticated}
+                setAuthenticated={setAuthenticated}
+              />
+            </Route>
+            <Route path="/gallery">gallery</Route>
+            {/* <> */}
+            <Route path="/audio">
+              <AudioPlayer />
+            </Route>
+            <Route path="/video">video</Route>
+            <ProtectedRoute path="/users" exact authenticated={authenticated}>
+              <UsersList />
+            </ProtectedRoute>
+            <ProtectedRoute
+              path="/users/:userId"
+              exact
               authenticated={authenticated}
-              setAuthenticated={setAuthenticated}
-            />
-          </Route>
-          <Route path="/sign-up" exact>
-            <SignUpForm
-              authenticated={authenticated}
-              setAuthenticated={setAuthenticated}
-            />
-          </Route>
-          <Route path="/gallery">gallery</Route>
-          <Route path="/audio">
-            <AudioPlayer />
-          </Route>
-          <Route path="/video">video</Route>
-          <ProtectedRoute path="/users" exact authenticated={authenticated}>
-            <UsersList />
-          </ProtectedRoute>
-          <ProtectedRoute
-            path="/users/:userId"
-            exact
-            authenticated={authenticated}
-          >
-            <User />
-          </ProtectedRoute>
-          {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+            >
+              <User />
+            </ProtectedRoute>
+            {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
             <h1>My Home Page</h1>
           </ProtectedRoute> */}
-        </Switch>
+          </Switch>
+        </SelectedAudioContext.Provider>
       </Container>
     </BrowserRouter>
   );
