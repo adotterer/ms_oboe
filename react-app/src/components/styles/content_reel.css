@@ -8,6 +8,7 @@
   padding: 1em;
 }
 .track__list li {
+  width: 100%;
   list-style-type: none;
   background-color: rgb(247, 247, 247);
   padding: 0.5em;
