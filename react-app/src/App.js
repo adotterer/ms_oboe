@@ -13,6 +13,7 @@ import { AudioPlayer } from "./components/AudioPlayer"; // react-app/src/compone
 import SelectedAudioContext, {
   defaultContext,
 } from "./components/context/SelectedAudioContext";
+import AuthContext from "./components/context/AuthContext";
 import { logout } from "./services/auth";
 
 import { authenticate } from "./services/auth";
@@ -39,61 +40,63 @@ function App() {
   return (
     <BrowserRouter>
       <Container>
-        <SelectedAudioContext.Provider
-          value={{ selectedAudio, setSelectedAudio }}
-        >
-          <Header />
-          <NavBar setAuthenticated={setAuthenticated} />
-          <Switch>
-            <Route path="/" exact>
-              <Bio />
-            </Route>
+        <AuthContext.Provider value={{ authenticated, setAuthenticated }}>
+          <SelectedAudioContext.Provider
+            value={{ selectedAudio, setSelectedAudio }}
+          >
+            <Header />
+            <NavBar setAuthenticated={setAuthenticated} />
+            <Switch>
+              <Route path="/" exact>
+                <Bio />
+              </Route>
 
-            <Route path="/login" exact>
-              <LoginForm
+              <Route path="/login" exact>
+                <LoginForm
+                  authenticated={authenticated}
+                  setAuthenticated={setAuthenticated}
+                />
+              </Route>
+              <Route path="/logout" exact>
+                <button
+                  onClick={() => {
+                    logout()
+                      .then((res) => console.log("logged out apparently"))
+                      .then(() => {
+                        window.location.assign("/login");
+                      });
+                  }}
+                >
+                  Logout
+                </button>
+              </Route>
+              <Route path="/sign-up" exact>
+                <SignUpForm
+                  authenticated={authenticated}
+                  setAuthenticated={setAuthenticated}
+                />
+              </Route>
+              <Route path="/gallery">gallery</Route>
+              <Route path="/audio">
+                <AudioPlayer />
+              </Route>
+              <Route path="/video">video</Route>
+              <ProtectedRoute path="/users" exact authenticated={authenticated}>
+                <UsersList />
+              </ProtectedRoute>
+              <ProtectedRoute
+                path="/users/:userId"
+                exact
                 authenticated={authenticated}
-                setAuthenticated={setAuthenticated}
-              />
-            </Route>
-            <Route path="/logout" exact>
-              <button
-                onClick={() => {
-                  logout()
-                    .then((res) => console.log("logged out apparently"))
-                    .then(() => {
-                      window.location.assign("/login");
-                    });
-                }}
               >
-                Logout
-              </button>
-            </Route>
-            <Route path="/sign-up" exact>
-              <SignUpForm
-                authenticated={authenticated}
-                setAuthenticated={setAuthenticated}
-              />
-            </Route>
-            <Route path="/gallery">gallery</Route>
-            <Route path="/audio">
-              <AudioPlayer />
-            </Route>
-            <Route path="/video">video</Route>
-            <ProtectedRoute path="/users" exact authenticated={authenticated}>
-              <UsersList />
-            </ProtectedRoute>
-            <ProtectedRoute
-              path="/users/:userId"
-              exact
-              authenticated={authenticated}
-            >
-              <User />
-            </ProtectedRoute>
-            {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+                <User />
+              </ProtectedRoute>
+              {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
             <h1>My Home Page</h1>
           </ProtectedRoute> */}
-          </Switch>
-        </SelectedAudioContext.Provider>
+            </Switch>
+          </SelectedAudioContext.Provider>
+        </AuthContext.Provider>
       </Container>
     </BrowserRouter>
   );

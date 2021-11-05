@@ -1,6 +1,10 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
+import AuthContext from "./context/AuthContext";
 
 export function Upload() {
+  const { authenticated } = useContext(AuthContext);
+  if (!authenticated) return null;
+
   const [title, setTitle] = useState("");
   const [selectedFile, setSelectedFile] = useState();
   const [composer, setComposer] = useState("");
