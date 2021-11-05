@@ -41,7 +41,6 @@ def upload_file_to_s3(file, bucket_name, acl="public-read"):
 
 def delete_file_on_s3(bucket_name, s3_key_to_delete):
     try:
-        print("trying to delete: ", s3_key_to_delete)
         s3.delete_object(Bucket=bucket_name, Key=s3_key_to_delete)
     except Exception as e:
         print("Something Happened: ", e)

@@ -16,6 +16,7 @@ def send_audio():
 
 
 @audio_routes.route('/<int:id>/delete')
+@login_required
 def delete_audio(id):
     try:
         audio_file_to_delete = Audio.query.get(id)
