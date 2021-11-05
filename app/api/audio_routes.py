@@ -1,6 +1,7 @@
 from flask_login import login_required
 from flask import Blueprint, jsonify, session, request, redirect
 from app.models import Audio, db
+from .aws3 import delete_file_on_s3
 import json
 
 audio_routes = Blueprint('audio', __name__)
@@ -16,5 +17,12 @@ def send_audio():
 
 @audio_routes.route('/<int:id>/delete')
 def delete_audio(id):
-    print(id, "id")
-    return {"msg": f'deleted resorce at id: {id}'}
+    try:
+        audio_file_to_delete = Audio.query.get(id)
+        _, s3_key = audio_file_to_delete.URL.split(
+            "https://mshippoboe.s3.us-west-1.amazonaws.com/")
+        delete_file_on_s3("mshippoboe", s3_key)
+        return {"msg": f'deleted resorce at id: {id}'}
+    except Exception as e:
+        print("error: ", e)
+        return e
