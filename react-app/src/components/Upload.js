@@ -3,7 +3,6 @@ import AuthContext from "./context/AuthContext";
 
 export function Upload() {
   const { authenticated } = useContext(AuthContext);
-  if (!authenticated) return null;
 
   const [title, setTitle] = useState("");
   const [selectedFile, setSelectedFile] = useState();
@@ -34,6 +33,7 @@ export function Upload() {
       .then((data) => console.log(data));
   };
 
+  if (!authenticated) return null;
   return (
     <form className="form__upload" onSubmit={submit}>
       <div className="form__fields">
