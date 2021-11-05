@@ -22,7 +22,9 @@ def delete_audio(id):
         _, s3_key = audio_file_to_delete.URL.split(
             "https://mshippoboe.s3.us-west-1.amazonaws.com/")
         delete_file_on_s3("mshippoboe", s3_key)
+        db.session.delete(audio_file_to_delete)
+        db.session.commit()
         return {"msg": f'deleted resorce at id: {id}'}
     except Exception as e:
         print("error: ", e)
-        return e
+        return {"error": e.__dict__}
