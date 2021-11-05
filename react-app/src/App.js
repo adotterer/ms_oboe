@@ -13,6 +13,7 @@ import { AudioPlayer } from "./components/AudioPlayer"; // react-app/src/compone
 import SelectedAudioContext, {
   defaultContext,
 } from "./components/context/SelectedAudioContext";
+import { logout } from "./services/auth";
 
 import { authenticate } from "./services/auth";
 
@@ -54,6 +55,19 @@ function App() {
                 setAuthenticated={setAuthenticated}
               />
             </Route>
+            <Route path="/logout" exact>
+              <button
+                onClick={() => {
+                  logout()
+                    .then((res) => console.log("logged out apparently"))
+                    .then(() => {
+                      window.location.assign("/login");
+                    });
+                }}
+              >
+                Logout
+              </button>
+            </Route>
             <Route path="/sign-up" exact>
               <SignUpForm
                 authenticated={authenticated}
@@ -61,7 +75,6 @@ function App() {
               />
             </Route>
             <Route path="/gallery">gallery</Route>
-            {/* <> */}
             <Route path="/audio">
               <AudioPlayer />
             </Route>
