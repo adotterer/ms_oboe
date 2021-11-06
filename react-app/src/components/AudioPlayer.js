@@ -9,7 +9,7 @@ import "./styles/delete_modal.css";
 
 export function AudioPlayer({ src, musicInfo }) {
   const { authenticated } = useContext(AuthContext);
-  const [tracklists, setTracklists] = useState([]);
+  const [tracklists, setTracklists] = useState();
   const { selectedAudio, setSelectedAudio } = useContext(SelectedAudioContext);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -20,7 +20,11 @@ export function AudioPlayer({ src, musicInfo }) {
           console.log("res!", res);
           return res.json();
         })
-        .then((fetchedTracklists) => setTracklists(fetchedTracklists))
+        .then((fetchedTracklists) => {
+          console.log("about to set this: ", fetchedTracklists);
+
+          return setTracklists(fetchedTracklists);
+        })
         .catch((e) => console.log("error: ", e));
     }
   }, [tracklists]);
@@ -29,7 +33,7 @@ export function AudioPlayer({ src, musicInfo }) {
       <Upload />
       <div className="list__and__player">
         <ul className="track__list">
-          {tracklists.length &&
+          {tracklists &&
             tracklists.map((tracklist) => {
               return (
                 <li
