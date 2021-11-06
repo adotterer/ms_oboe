@@ -15,7 +15,8 @@ def send_audio():
         print(audio_query_results, "audio files".rjust(50, "."))
         return audio_files
     except Exception as e:
-        return {"error": "some error"}
+        print("error----->>".ljust(20, "."), e)
+        return {"error": e.__dict__}
 
 
 @audio_routes.route('/<int:id>/delete')
