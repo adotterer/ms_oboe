@@ -41,7 +41,7 @@
 
 .delete__icon {
   position: absolute;
-  right: -0.4em;
+  right: -0.55em;
   top: -0.5em;
   border: 1px solid rgb(228, 199, 199);
   background-color: rgb(255, 190, 190);
@@ -54,8 +54,9 @@
   justify-content: center;
 }
 
-/* .delete__icon:hover i {
-} */
+.delete__icon:hover i {
+  cursor: crosshair;
+}
 
 .delete__icon:hover {
   border: 1px solid rgb(238, 36, 0);
