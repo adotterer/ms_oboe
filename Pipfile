@@ -32,7 +32,6 @@ geopy = "==2.1.0"
 schedule = "*"
 pytz = "*"
 
-
 [dev-packages]
 psycopg2-binary = "==2.8.6"
 autopep8 = "*"
