@@ -6,7 +6,7 @@ export default function Bio() {
   return (
     <div id="div__bio_container">
       <div id="div__profilepic">
-        <img src={bio} id="img__profilepic" />
+        <img src={bio} id="img__profilepic" alt="Matt's profile" />
       </div>
       <article id="article__bio">
         <h2>Oboe & English Horn</h2>
