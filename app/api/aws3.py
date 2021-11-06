@@ -3,19 +3,19 @@ import botocore
 from app.config import Config
 
 
-S3_KEY = Config.S3_BUCKET
-S3_SECRET = Config.S3_SECRET
-S3_BUCKET = Config.S3_BUCKET
-BUCKET_NAME = "mshippoboe"
+AWS_ACCESS_KEY_ID = Config.AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = Config.AWS_SECRET_ACCESS_KEY
+S3_BUCKET_NAME = Config.S3_BUCKET_NAME
 
-bucket_location = boto3.client('s3').get_bucket_location(Bucket=BUCKET_NAME)
+bucket_location = boto3.client('s3').get_bucket_location(Bucket=S3_BUCKET_NAME)
 # Bucket must be in params
 
 s3 = boto3.client(
     "s3",
-    aws_access_key_id=S3_KEY,
-    aws_secret_access_key=S3_SECRET
+    aws_access_key_id=S3_BUCKET_NAME,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY
 )
+
 
 def upload_file_to_s3(file, bucket_name, acl="public-read"):
 
@@ -35,7 +35,7 @@ def upload_file_to_s3(file, bucket_name, acl="public-read"):
         print("Something Happened: ", e)
         return e
 
-    return "https://{}.s3.{}.amazonaws.com/{}".format(BUCKET_NAME, bucket_location['LocationConstraint'], file.filename)
+    return "https://{}.s3.{}.amazonaws.com/{}".format(S3_BUCKET_NAME, bucket_location['LocationConstraint'], file.filename)
 
 
 def delete_file_on_s3(bucket_name, s3_key_to_delete):
