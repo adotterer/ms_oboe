@@ -40,7 +40,7 @@ export function AudioPlayer({ src, musicInfo }) {
                   >
                     <i className="fas fa-trash-alt"></i>
                   </span>
-                  {modalOpen && <DeleteModal />}
+                  {modalOpen && <DeleteModal objId={tracklist.id} />}
                 </li>
               );
             })}

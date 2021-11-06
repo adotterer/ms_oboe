@@ -36,7 +36,9 @@
   background-color: rgb(235, 235, 235);
   border: 1px solid rgb(46, 46, 46);
   border-radius: 15px;
-  justify-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .delete__icon {
@@ -86,7 +88,6 @@
     display: none;
   }
   figure.audio__grid {
-    /* flex: 1 1 10vw; */
     width: 96vw;
     border: 2px solid rgb(201, 201, 201);
     position: fixed;
