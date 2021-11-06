@@ -10,6 +10,7 @@
   flex-direction: column;
 }
 .track__list li {
+  position: relative;
   width: 100%;
   list-style-type: none;
   background-color: rgb(247, 247, 247);
@@ -38,6 +39,27 @@
   justify-items: stretch;
 }
 
+.delete__icon {
+  position: absolute;
+  right: -0.4em;
+  top: -0.5em;
+  border: 1px solid rgb(228, 199, 199);
+  background-color: rgb(255, 190, 190);
+  border-radius: 50%;
+  font-size: 2em;
+  width: 3.4rem;
+  height: 3.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .delete__icon:hover i {
+} */
+
+.delete__icon:hover {
+  border: 1px solid rgb(238, 36, 0);
+}
 @media screen and (max-width: 900px) {
   .track__list li {
     font-size: 0.95em;

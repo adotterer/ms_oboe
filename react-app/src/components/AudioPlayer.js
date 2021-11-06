@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./styles/content_reel.css";
-import MilhaudAudio from "./audio/Milhaud2.wav";
 import { Upload } from "./Upload";
 import SelectedAudioContext from "./context/SelectedAudioContext";
 
@@ -29,6 +28,9 @@ export function AudioPlayer({ src, musicInfo }) {
                 >
                   <i>{tracklist.title}</i> - {tracklist.composer}
                   <figcaption>{tracklist.performers}</figcaption>
+                  <span className="delete__icon">
+                    <i class="fas fa-trash-alt"></i>
+                  </span>
                 </li>
               );
             })}
