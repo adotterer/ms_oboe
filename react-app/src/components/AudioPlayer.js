@@ -68,5 +68,3 @@ export function AudioPlayer({ src, musicInfo }) {
     </ModalContext.Provider>
   );
 }
-
-// TODO: fetch all the audios, make a AudioPlayer for each one
