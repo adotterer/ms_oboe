@@ -20,13 +20,13 @@ try:
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY
     )
 except Exception as e:
-    print("error=>>>", e
-          )
+    print("error=>>> from boto3.client, line 23", e)
 try:
     bucket_location = boto3.client(
         's3').get_bucket_location(Bucket=BUCKET_NAME)
 except Exception as e:
-    print("error=>>>", e)
+    print(BUCKET_NAME)
+    print("error=>>> from getbucketlocation, line 23", e)
 
 
 def upload_file_to_s3(file, bucket_name, acl="public-read"):
