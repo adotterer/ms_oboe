@@ -20,14 +20,12 @@ try:
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY
     )
 except Exception as e:
-    print("line22")
     print("error=>>>", e
           )
 try:
     bucket_location = boto3.client(
         's3').get_bucket_location(Bucket=BUCKET_NAME)
 except Exception as e:
-    print("line22")
     print("error=>>>", e)
 
 
