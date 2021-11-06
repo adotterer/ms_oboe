@@ -6,9 +6,9 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SQLALCHEMY_ECHO = True
-    S3_BUCKET = os.environ.get("S3_BUCKET_NAME")
-    S3_KEY = os.environ.get("S3_ACCESS_KEY")
-    S3_SECRET = os.environ.get("S3_SECRET_ACCESS_KEY")
+    S3_BUCKET_NAME = os.environ.get("S3_BUCKET_NAME")
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
     ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL")
-    S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
+    S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET_NAME)
