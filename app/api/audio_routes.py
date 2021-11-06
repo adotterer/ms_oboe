@@ -12,10 +12,10 @@ def send_audio():
     try:
         audio_query_results = Audio.query.all()
         audio_files = jsonify(audio_query_results)
-        print(audio_files, "audio files")
+        print(audio_query_results, "audio files".rjust(50, "."))
         return audio_files
     except Exception as e:
-        return {"error": e.__dict__}
+        return {"error": "some error"}
 
 
 @audio_routes.route('/<int:id>/delete')
