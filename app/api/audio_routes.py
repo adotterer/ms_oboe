@@ -2,7 +2,7 @@ from flask_login import login_required
 from flask import Blueprint, jsonify, session, request, redirect
 from app.models import Audio, db
 from .aws3 import delete_file_on_s3
-import json
+from flask import json
 
 audio_routes = Blueprint('audio', __name__)
 
@@ -11,6 +11,7 @@ audio_routes = Blueprint('audio', __name__)
 def send_audio():
     try:
         audio_query_results = Audio.query.all()
+        print(audio_query_results, "audio query results")
         audio_files = jsonify(audio_query_results)
         print(audio_query_results, "audio files".rjust(50, "."))
         return audio_files
