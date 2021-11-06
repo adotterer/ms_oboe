@@ -4,9 +4,11 @@ import { Upload } from "./Upload";
 import SelectedAudioContext from "./context/SelectedAudioContext";
 import DeleteModal from "./DeleteModal";
 import ModalContext from "./context/ModalContext";
+import AuthContext from "./context/AuthContext";
 import "./styles/delete_modal.css";
 
 export function AudioPlayer({ src, musicInfo }) {
+  const { authenticated } = useContext(AuthContext);
   const [tracklists, setTracklists] = useState();
   const { selectedAudio, setSelectedAudio } = useContext(SelectedAudioContext);
   const [modalOpen, setModalOpen] = useState(false);
@@ -32,14 +34,16 @@ export function AudioPlayer({ src, musicInfo }) {
                 >
                   <i>{tracklist.title}</i> - {tracklist.composer}
                   <figcaption>{tracklist.performers}</figcaption>
-                  <span
-                    className="delete__icon"
-                    onClick={() => {
-                      setModalOpen(true);
-                    }}
-                  >
-                    <i className="fas fa-trash-alt"></i>
-                  </span>
+                  {authenticated && (
+                    <span
+                      className="delete__icon"
+                      onClick={() => {
+                        setModalOpen(true);
+                      }}
+                    >
+                      <i className="fas fa-trash-alt"></i>
+                    </span>
+                  )}
                   {modalOpen && <DeleteModal objId={tracklist.id} />}
                 </li>
               );

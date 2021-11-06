@@ -8,6 +8,7 @@ export function Upload() {
   const [selectedFile, setSelectedFile] = useState();
   const [composer, setComposer] = useState("");
   const [performers, setPerformers] = useState("");
+  const [uploadMessage, setUploadMessage] = useState("");
   let formData = new FormData();
 
   const memoizedPreviewURL = useMemo(() => {
@@ -16,10 +17,19 @@ export function Upload() {
 
   const submit = async (e) => {
     e.preventDefault();
+    if (!selectedFile) {
+      return new Promise((resolve) => {
+        setUploadMessage("please choose a file to upload");
+        return setTimeout(resolve, 900);
+      }).then(() => {
+        setUploadMessage("");
+      });
+    }
     formData.append("title", title);
     formData.append("composer", composer);
     formData.append("performers", performers);
     formData.append("file", selectedFile, "myfile.wav");
+    setUploadMessage("upload.....");
     fetch("/api/upload/", {
       // CANNOT HAVE HEADERS FOR UPLOADING FILES!!
       // https://muffinman.io/blog/uploading-files-using-fetch-multipart-form-data/
@@ -28,68 +38,81 @@ export function Upload() {
     })
       .then((res) => {
         formData = new FormData();
+        setUploadMessage("done");
         return res.json();
       })
-      .then((data) => console.log(data));
+      .then((data) => {
+        window.location.reload();
+      })
+      .catch((e) => {
+        console.log("error", e);
+      });
   };
 
   if (!authenticated) return null;
   return (
     <form className="form__upload" onSubmit={submit}>
-      <div className="form__fields">
-        <label htmlFor="title">Title</label>
-        <input
-          name="title"
-          type="text"
-          placeholder="title"
-          value={title}
-          onChange={({ target: { value } }) => {
-            setTitle(value);
-          }}
-          required
-        />
-        <br />
-        <label htmlFor="composer">Composer</label>
-        <input
-          name="composer"
-          placeholder="composer"
-          type="text"
-          value={composer}
-          onChange={({ target: { value } }) => {
-            setComposer(value);
-          }}
-        />
-        <br />
-        <label htmlFor="Performers">Performer(s)</label>
-        <input
-          name="performers"
-          placeholder="performers"
-          type="text"
-          value={performers}
-          onChange={({ target: { value } }) => {
-            setPerformers(value);
-          }}
-        />
+      {uploadMessage ? (
+        <div className="upload__message">{uploadMessage}</div>
+      ) : (
+        <>
+          {" "}
+          <div className="form__fields">
+            <label htmlFor="title">Title</label>
+            <input
+              name="title"
+              type="text"
+              placeholder="title"
+              value={title}
+              onChange={({ target: { value } }) => {
+                setTitle(value);
+              }}
+              required
+            />
+            <br />
+            <label htmlFor="composer">Composer</label>
+            <input
+              name="composer"
+              placeholder="composer"
+              type="text"
+              value={composer}
+              onChange={({ target: { value } }) => {
+                setComposer(value);
+              }}
+            />
+            <br />
+            <label htmlFor="Performers">Performer(s)</label>
+            <input
+              name="performers"
+              placeholder="performers"
+              type="text"
+              value={performers}
+              onChange={({ target: { value } }) => {
+                setPerformers(value);
+              }}
+            />
 
-        <input
-          name="file_upload"
-          type="file"
-          accept="wav/mp3/aiff"
-          onChange={({
-            target: {
-              files: [file],
-            },
-          }) => {
-            setSelectedFile(file);
-          }}
-        />
-        <button type="submit">Submit</button>
-      </div>
-      <div className="audio_preview">
-        {memoizedPreviewURL && (
-          <audio controls src={memoizedPreviewURL}></audio>
-        )}
-      </div>
+            <input
+              name="file_upload"
+              type="file"
+              accept="wav/mp3/aiff"
+              onChange={({
+                target: {
+                  files: [file],
+                },
+              }) => {
+                setSelectedFile(file);
+              }}
+            />
+            <button type="submit">Submit</button>
+          </div>
+          <div className="audio_preview">
+            {memoizedPreviewURL && (
+              <audio controls src={memoizedPreviewURL}></audio>
+            )}
+          </div>
+        </>
+      )}
     </form>
   );
 }
