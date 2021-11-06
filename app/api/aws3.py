@@ -7,12 +7,14 @@ AWS_ACCESS_KEY_ID = Config.AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY = Config.AWS_SECRET_ACCESS_KEY
 S3_BUCKET_NAME = Config.S3_BUCKET_NAME
 
+print("S3_BUCKET_NAME ".ljust(50, "."), S3_BUCKET_NAME)
+print("AWS_ACCESS_KEY_ID ".ljust(50, "."), AWS_ACCESS_KEY_ID)
 bucket_location = boto3.client('s3').get_bucket_location(Bucket=S3_BUCKET_NAME)
 # Bucket must be in params
 
 s3 = boto3.client(
     "s3",
-    aws_access_key_id=S3_BUCKET_NAME,
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
     aws_secret_access_key=AWS_SECRET_ACCESS_KEY
 )
 
