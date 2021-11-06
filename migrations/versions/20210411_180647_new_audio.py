@@ -22,6 +22,8 @@ def upgrade():
     #                 sa.PrimaryKeyConstraint('id')
     #                 )
     print("not upgrading audios!")
+    # https://github.com/miguelgrinberg/Flask-Migrate/issues/333
+    # fixed deployment issue of 2 audio tables
     # ### end Alembic commands ###
 
 

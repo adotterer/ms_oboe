@@ -6,11 +6,7 @@ from app.config import Config
 AWS_ACCESS_KEY_ID = Config.AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY = Config.AWS_SECRET_ACCESS_KEY
 S3_BUCKET_NAME = Config.S3_BUCKET_NAME
-
-print("S3_BUCKET_NAME ".ljust(50, "."), S3_BUCKET_NAME)
-print("AWS_ACCESS_KEY_ID ".ljust(50, "."), AWS_ACCESS_KEY_ID)
 BUCKET_NAME = "mshippoboe"
-
 
 # Bucket must be in params
 try:
@@ -20,14 +16,12 @@ try:
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY
     )
 except Exception as e:
-    print("error=>>> from boto3.client, line 23", e)
+    print("error=>>> from boto3.client", e)
 try:
     bucket_location = boto3.client(
         's3').get_bucket_location(Bucket=BUCKET_NAME)
 except Exception as e:
-    print(BUCKET_NAME)
-    print("error=>>> from getbucketlocation, line 23", e)
-
+    print(f"error=>>> from get_bucket_location(Bucket={BUCKET_NAME})", e)
 
 def upload_file_to_s3(file, bucket_name, acl="public-read"):
 
