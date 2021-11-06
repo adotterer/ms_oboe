@@ -2,10 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import "./styles/content_reel.css";
 import { Upload } from "./Upload";
 import SelectedAudioContext from "./context/SelectedAudioContext";
+import DeleteModal from "./DeleteModal";
+import ModalContext from "./context/ModalContext";
+import "./styles/delete_modal.css";
 
 export function AudioPlayer({ src, musicInfo }) {
   const [tracklists, setTracklists] = useState();
   const { selectedAudio, setSelectedAudio } = useContext(SelectedAudioContext);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if (!tracklists) {
@@ -15,7 +19,7 @@ export function AudioPlayer({ src, musicInfo }) {
     }
   }, [tracklists]);
   return (
-    <>
+    <ModalContext.Provider value={{ modalOpen, setModalOpen }}>
       <Upload />
       <div className="list__and__player">
         <ul className="track__list">
@@ -28,9 +32,15 @@ export function AudioPlayer({ src, musicInfo }) {
                 >
                   <i>{tracklist.title}</i> - {tracklist.composer}
                   <figcaption>{tracklist.performers}</figcaption>
-                  <span className="delete__icon">
+                  <span
+                    className="delete__icon"
+                    onClick={() => {
+                      setModalOpen(true);
+                    }}
+                  >
                     <i class="fas fa-trash-alt"></i>
                   </span>
+                  {modalOpen && <DeleteModal />}
                 </li>
               );
             })}
@@ -55,7 +65,7 @@ export function AudioPlayer({ src, musicInfo }) {
           </figure>
         )}
       </div>
-    </>
+    </ModalContext.Provider>
   );
 }
 

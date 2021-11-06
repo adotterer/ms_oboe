@@ -1,13 +1,15 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
-function DeleteModal() {
+export default function DeleteModal() {
   return (
     <div className="delete__modal__container">
       <div className="delete__modal__message">
         Are you sure you want to delete this?
       </div>
-      <button>Yes</button>
-      <button>No</button>
+      <div>
+        <button>Yes</button>
+        <button>No</button>
+      </div>
     </div>
   );
 }
