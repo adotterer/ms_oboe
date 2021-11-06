@@ -108,3 +108,5 @@ $ flask db stamp head  # To set the revision in the database to the head, withou
 $ flask db migrate     # To detect automatically all the changes.
 $ flask db upgrade     # To apply all the changes.
 ```
+
+k
