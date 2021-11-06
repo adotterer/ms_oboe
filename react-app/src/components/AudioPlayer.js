@@ -17,7 +17,8 @@ export function AudioPlayer({ src, musicInfo }) {
     if (!tracklists) {
       fetch("/api/audio/all")
         .then((res) => res.json())
-        .then((fetchedTracklists) => setTracklists(fetchedTracklists));
+        .then((fetchedTracklists) => setTracklists(fetchedTracklists))
+        .catch((e) => console.log(e));
     }
   }, [tracklists]);
   return (

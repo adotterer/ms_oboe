@@ -9,10 +9,13 @@ audio_routes = Blueprint('audio', __name__)
 
 @audio_routes.route('/all')
 def send_audio():
-    audio_query_results = Audio.query.all()
-    audio_files = jsonify(audio_query_results)
-    print(audio_files, "audio files")
-    return audio_files
+    try:
+        audio_query_results = Audio.query.all()
+        audio_files = jsonify(audio_query_results)
+        print(audio_files, "audio files")
+        return audio_files
+    except Exception as e:
+        return {"error": e.__dict__}
 
 
 @audio_routes.route('/<int:id>/delete')
