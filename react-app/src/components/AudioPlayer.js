@@ -38,7 +38,7 @@ export function AudioPlayer({ src, musicInfo }) {
                       setModalOpen(true);
                     }}
                   >
-                    <i class="fas fa-trash-alt"></i>
+                    <i className="fas fa-trash-alt"></i>
                   </span>
                   {modalOpen && <DeleteModal />}
                 </li>
