@@ -89,36 +89,3 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
-
-
-# @app.route('/api/upload', methods=["POST"])
-# def upload_file():
-#     payload = request.get_json()
-#     print(payload, "payload")
-#     form = UploadForm()
-#     print("form", form)
-    # if "user_file" not in request.files:
-    #     return "no user_file key in request.files"
-
-    # file = request.files["user_file"]
-    # print(file, "file!")
-    # """
-    #     These attributes are also available
-
-    #     file.filename               # The actual name of the file
-    #     file.content_type
-    #     file.content_length
-    #     file.mimetype
-
-    # """
-
-    # if file.filename == "":
-    #     return "Please select a file"
-
-    # if file and allowed_file(file.filename):
-    #     file.filename = secure_filename(file.filename)
-    #     output = upload_file_to_s3(file, app.config["S3_BUCKET"])
-    #     return str(output)
-
-    # else:
-    #     return redirect("/")
