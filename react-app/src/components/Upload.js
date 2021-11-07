@@ -49,14 +49,15 @@ export function Upload() {
       });
   };
 
-  if (!authenticated) return null;
+  if (!authenticated) {
+    return null;
+  }
   return (
     <form className="form__upload" onSubmit={submit}>
       {uploadMessage ? (
         <div className="upload__message">{uploadMessage}</div>
       ) : (
         <>
-          {" "}
           <div className="form__fields">
             <label htmlFor="title">Title</label>
             <input
