@@ -7,7 +7,7 @@ import ModalContext from "./context/ModalContext";
 import AuthContext from "./context/AuthContext";
 import "./styles/delete_modal.css";
 
-export function AudioPlayer({ src, musicInfo }) {
+export function AudioPlayer() {
   const { authenticated } = useContext(AuthContext);
   const [tracklists, setTracklists] = useState();
   const { selectedAudio, setSelectedAudio } = useContext(SelectedAudioContext);
@@ -20,14 +20,11 @@ export function AudioPlayer({ src, musicInfo }) {
           console.log("res!", res);
           return res.json();
         })
-        .then((fetchedTracklists) => {
-          console.log("about to set this: ", fetchedTracklists);
-
-          return setTracklists(fetchedTracklists);
-        })
+        .then((fetchedTracklists) => setTracklists(fetchedTracklists))
         .catch((e) => console.log("error: ", e));
     }
   }, [tracklists]);
+
   return (
     <ModalContext.Provider value={{ modalOpen, setModalOpen }}>
       <Upload />
@@ -45,9 +42,7 @@ export function AudioPlayer({ src, musicInfo }) {
                   {authenticated && (
                     <span
                       className="delete__icon"
-                      onClick={() => {
-                        setModalOpen(true);
-                      }}
+                      onClick={() => setModalOpen(true)}
                     >
                       <i className="fas fa-trash-alt"></i>
                     </span>

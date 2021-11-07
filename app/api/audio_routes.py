@@ -10,9 +10,7 @@ audio_routes = Blueprint('audio', __name__)
 def send_audio():
     try:
         audio_query_results = Audio.query.all()
-        print(audio_query_results, "audio query results")
         audio_files = jsonify(audio_query_results)
-        print(audio_query_results, "audio files".rjust(50, "."))
         return audio_files
     except Exception as e:
         print("error----->>".ljust(20, "."), e)

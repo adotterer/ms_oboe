@@ -9,10 +9,8 @@ import User from "./components/User";
 import Header from "./components/Header";
 import Container from "./components/Container";
 import Bio from "./components/Bio";
-import { AudioPlayer } from "./components/AudioPlayer"; // react-app/src/components/ContentReel.js
-import SelectedAudioContext, {
-  defaultContext,
-} from "./components/context/SelectedAudioContext";
+import { AudioPlayer } from "./components/AudioPlayer";
+import SelectedAudioContext from "./components/context/SelectedAudioContext";
 import AuthContext from "./components/context/AuthContext";
 import { logout } from "./services/auth";
 
@@ -21,7 +19,7 @@ import { authenticate } from "./services/auth";
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [selectedAudio, setSelectedAudio] = useState(defaultContext);
+  const [selectedAudio, setSelectedAudio] = useState();
 
   useEffect(() => {
     (async () => {
@@ -61,10 +59,12 @@ function App() {
                 <button
                   onClick={() => {
                     logout()
-                      .then((res) => console.log("logged out apparently"))
-                      .then(() => {
-                        window.location.assign("/login");
-                      });
+                      .then(() =>
+                        console.log(
+                          "logged out".padStart(20, ".").padEnd(20, ".")
+                        )
+                      )
+                      .then(() => window.location.assign("/login"));
                   }}
                 >
                   Logout
