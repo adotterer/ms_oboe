@@ -15,7 +15,7 @@
   margin: -1.5em 0.4em 0.8em 0.4em;
   text-align: center;
 }
-#div__container ul {
+#div__container nav > ul {
   margin-top: 2em;
   display: flex;
   justify-content: center;

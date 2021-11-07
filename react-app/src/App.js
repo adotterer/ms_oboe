@@ -9,6 +9,7 @@ import User from "./components/User";
 import Header from "./components/Header";
 import Container from "./components/Container";
 import Bio from "./components/Bio";
+import Gallery from "./components/Gallery";
 import { AudioPlayer } from "./components/AudioPlayer";
 import SelectedAudioContext from "./components/context/SelectedAudioContext";
 import AuthContext from "./components/context/AuthContext";
@@ -70,13 +71,15 @@ function App() {
                   Logout
                 </button>
               </Route>
-              <Route path="/sign-up" exact>
+              {/* <Route path="/sign-up" exact>
                 <SignUpForm
                   authenticated={authenticated}
                   setAuthenticated={setAuthenticated}
                 />
+              </Route> */}
+              <Route path="/gallery">
+                <Gallery />
               </Route>
-              <Route path="/gallery">gallery</Route>
               <Route path="/audio">
                 <AudioPlayer />
               </Route>
