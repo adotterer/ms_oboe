@@ -3,7 +3,6 @@ import AuthContext from "./context/AuthContext";
 
 export function Upload() {
   const { authenticated } = useContext(AuthContext);
-
   const [title, setTitle] = useState("");
   const [selectedFile, setSelectedFile] = useState();
   const [composer, setComposer] = useState("");
@@ -29,7 +28,15 @@ export function Upload() {
     formData.append("composer", composer);
     formData.append("performers", performers);
     formData.append("file", selectedFile, "myfile.wav");
-    setUploadMessage("upload.....");
+
+    setUploadMessage("uploading...");
+
+    function addDotEffect() {
+      setUploadMessage((msg) => (msg += "."));
+    }
+
+    const loading_interval_id = setInterval(addDotEffect, 300);
+
     fetch("/api/upload/", {
       // CANNOT HAVE HEADERS FOR UPLOADING FILES!!
       // https://muffinman.io/blog/uploading-files-using-fetch-multipart-form-data/
@@ -38,12 +45,11 @@ export function Upload() {
     })
       .then((res) => {
         formData = new FormData();
-        setUploadMessage("done");
+        setUploadMessage("Success! 🎼 ");
+        clearInterval(loading_interval_id);
         return res.json();
       })
-      .then((data) => {
-        window.location.reload();
-      })
+      .then((data) => window.location.reload())
       .catch((e) => {
         console.log("error", e);
       });

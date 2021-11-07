@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import "./styles/gallery.css";
 
 function randomNumber(maxNumber) {
   return Math.ceil(Math.random() * maxNumber);
@@ -34,21 +35,25 @@ const imageData = [
 ];
 
 export default function Gallery() {
+  const [zoomedPhotoId, setZoomedPhotoId] = useState();
+
   return (
     <div id="gallery__container">
       <ImageList
         style={{ margin: "0 auto" }}
-        sx={{ width: "80%", height: "fit-content" }}
+        sx={{ width: "80%", height: "100%" }}
         variant="quilted"
-        cols={4}
-        rowHeight={"100%"}
+        cols={3}
+        rowHeight={250}
       >
         {imageData.map((image, i) => {
           return (
             <ImageListItem
-              cols={randomNumber(3)}
-              rows={randomNumber(3)}
-              key={image.src}
+              style={{ cursor: "pointer" }}
+              onClick={() => setZoomedPhotoId(i)}
+              cols={zoomedPhotoId == i ? 2 : 1}
+              rows={zoomedPhotoId == i ? 2 : 1}
+              key={image.src + i}
             >
               <img
                 src={image.src}
