@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./styles/content_reel.css";
-import { Upload } from "./Upload";
+import { UploadAudio } from "./UploadAudio";
 import SelectedAudioContext from "./context/SelectedAudioContext";
 import DeleteModal from "./DeleteModal";
 import ModalContext from "./context/ModalContext";
@@ -27,7 +27,7 @@ export function AudioPlayer() {
 
   return (
     <ModalContext.Provider value={{ modalOpen, setModalOpen }}>
-      <Upload />
+      <UploadAudio />
       <div className="list__and__player">
         <ul className="track__list">
           {tracklists &&

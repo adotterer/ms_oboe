@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useContext } from "react";
 import AuthContext from "./context/AuthContext";
 
-export function Upload() {
+export function UploadAudio() {
   const { authenticated } = useContext(AuthContext);
   const [title, setTitle] = useState("");
   const [selectedFile, setSelectedFile] = useState();
@@ -37,7 +37,7 @@ export function Upload() {
 
     const loading_interval_id = setInterval(addDotEffect, 300);
 
-    fetch("/api/upload/", {
+    fetch("/api/upload/audio", {
       // CANNOT HAVE HEADERS FOR UPLOADING FILES!!
       // https://muffinman.io/blog/uploading-files-using-fetch-multipart-form-data/
       method: "POST",
