@@ -16,10 +16,7 @@ export function AudioPlayer() {
   useEffect(() => {
     if (!tracklists) {
       fetch("/api/audio/all")
-        .then((res) => {
-          console.log("res!", res);
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((fetchedTracklists) => setTracklists(fetchedTracklists))
         .catch((e) => console.log("error: ", e));
     }

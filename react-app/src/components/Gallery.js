@@ -1,11 +1,11 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import "./styles/gallery.css";
 
-function randomNumber(maxNumber) {
-  return Math.ceil(Math.random() * maxNumber);
-}
+// function randomNumber(maxNumber) {
+//   return Math.ceil(Math.random() * maxNumber);
+// }
 
 const imageData = [
   {
@@ -35,7 +35,7 @@ const imageData = [
 ];
 
 export default function Gallery() {
-  const [zoomedPhotoId, setZoomedPhotoId] = useState();
+  const [zoomedPhotoId, setZoomedPhotoId] = useState(null);
 
   return (
     <div id="gallery__container">
@@ -51,14 +51,14 @@ export default function Gallery() {
             <ImageListItem
               style={{ cursor: "pointer" }}
               onClick={() => setZoomedPhotoId(i)}
-              cols={zoomedPhotoId == i ? 2 : 1}
-              rows={zoomedPhotoId == i ? 2 : 1}
+              cols={zoomedPhotoId === i ? 2 : 1}
+              rows={zoomedPhotoId === i ? 2 : 1}
               key={image.src + i}
             >
               <img
                 src={image.src}
                 // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                alt="image"
+                alt={image.title}
                 loading="lazy"
               />
             </ImageListItem>
