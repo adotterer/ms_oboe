@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import AuthContext from "./context/AuthContext";
 import "./styles/gallery.css";
 
 // function randomNumber(maxNumber) {
@@ -64,6 +65,15 @@ export default function Gallery() {
             </ImageListItem>
           );
         })}
+        <ImageListItem
+          style={{ cursor: "pointer" }}
+          onClick={() => null}
+          cols={1}
+          rows={1}
+          key={"uploader"}
+        >
+          boom boom girl
+        </ImageListItem>
       </ImageList>
     </div>
   );
