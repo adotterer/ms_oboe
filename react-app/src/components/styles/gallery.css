@@ -1,3 +1,26 @@
 #gallery__container {
-  /* add rules here */
+  width: 80%;
+  height: 100%;
+}
+
+#upload__to_gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#upload__icon__gallery {
+  font-size: 8em;
+}
+
+#upload__icon__gallery:hover {
+  color: tomato;
+}
+
+@media screen and (max-width: 600px) {
+  #gallery__container {
+    width: 100%;
+    height: 100%;
+  }
 }
