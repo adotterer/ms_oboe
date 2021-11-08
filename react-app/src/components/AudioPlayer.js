@@ -5,7 +5,6 @@ import SelectedAudioContext from "./context/SelectedAudioContext";
 import DeleteModal from "./DeleteModal";
 import ModalContext from "./context/ModalContext";
 import AuthContext from "./context/AuthContext";
-import "./styles/delete_modal.css";
 
 export function AudioPlayer() {
   const { authenticated } = useContext(AuthContext);

@@ -10,7 +10,7 @@ export default function DeleteModal({ objId }) {
   function deleteOnServer() {
     console.log(objId, "objectId");
     return fetch(`/api/audio/${objId}/delete`)
-      .then((res) => {
+      .then(() => {
         return new Promise((resolve) => {
           setMessageText("deleting 😘");
           setTimeout(resolve, 480);
