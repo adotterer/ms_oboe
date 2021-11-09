@@ -18,6 +18,18 @@
   color: tomato;
 }
 
+#upload__image__modal .cancel__icon {
+  position: absolute;
+  right: -0.3em;
+  top: -0.4em;
+  font-size: 3.2em;
+}
+
+#upload__image__modal .cancel__icon:hover {
+  color: crimson;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
   #gallery__container {
     width: 100%;

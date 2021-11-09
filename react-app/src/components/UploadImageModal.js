@@ -1,6 +1,9 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
+import ModalContext from "./context/ModalContext";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 export default function UploadImageModal() {
+  const { modalOpen, setModalOpen } = useContext(ModalContext);
   const [selectedFile, setSelectedFile] = useState();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -16,42 +19,48 @@ export default function UploadImageModal() {
     formData.append("title", title);
     formData.append("description", description);
   };
-
+  if (!modalOpen) return null;
   return (
-    <form onSubmit={handleSubmit} id="upload__image__modal">
-      <div className="upload__image__msg">
-        {memoizedPreviewURL ? (
-          <img src={memoizedPreviewURL} alt="upload preview" />
-        ) : (
-          "Upload a new image"
-        )}
-      </div>
-      <label htmlFor="title">Title:</label>
-      <input
-        value={title}
-        onChange={({ target: { value } }) => setTitle(value)}
-        name="title"
-        type="text"
-      ></input>
-      <label htmlFor="description">Description:</label>
-      <input
-        value={description}
-        onChange={({ target: { value } }) => setDescription(value)}
-        type="text"
-      ></input>
-      <input
-        name="gallery"
-        type="file"
-        accept="jpeg/png/jpg/gif"
-        onChange={({
-          target: {
-            files: [file],
-          },
-        }) => {
-          setSelectedFile(file);
-        }}
-      />
-      <button>Upload</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit} id="upload__image__modal">
+        <div className="upload__image__msg">
+          {memoizedPreviewURL ? (
+            <img src={memoizedPreviewURL} alt="upload preview" />
+          ) : (
+            "Upload a new image"
+          )}
+        </div>
+        <label htmlFor="title">Title:</label>
+        <input
+          value={title}
+          onChange={({ target: { value } }) => setTitle(value)}
+          name="title"
+          type="text"
+        ></input>
+        <label htmlFor="description">Description:</label>
+        <input
+          value={description}
+          onChange={({ target: { value } }) => setDescription(value)}
+          type="text"
+        ></input>
+        <input
+          name="gallery"
+          type="file"
+          accept="jpeg/png/jpg/gif"
+          onChange={({
+            target: {
+              files: [file],
+            },
+          }) => {
+            setSelectedFile(file);
+          }}
+        />
+        <button>Upload</button>
+        <CancelIcon
+          onClick={() => setModalOpen(false)}
+          className="cancel__icon"
+        />
+      </form>
+    </>
   );
 }

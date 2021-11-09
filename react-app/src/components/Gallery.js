@@ -41,7 +41,7 @@ const imageData = [
 export default function Gallery() {
   const [zoomedPhotoId, setZoomedPhotoId] = useState(null);
   const { authenticated } = useContext(AuthContext);
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <ModalContext.Provider value={{ modalOpen, setModalOpen }}>
@@ -71,20 +71,23 @@ export default function Gallery() {
           );
         })}
         {authenticated && (
-          <ImageListItem
-            id="upload__to_gallery"
-            onClick={() => null}
-            cols={1}
-            rows={1}
-            key={"uploader"}
-          >
-            <AddCircleIcon
-              id="upload__icon__gallery"
-              sx={{ fontSize: "8em" }}
-            />
-          </ImageListItem>
+          <>
+            <ImageListItem
+              id="upload__to_gallery"
+              onClick={() => null}
+              cols={1}
+              rows={1}
+              key={"uploader"}
+            >
+              <AddCircleIcon
+                id="upload__icon__gallery"
+                sx={{ fontSize: "8em" }}
+                onClick={() => setModalOpen(true)}
+              />
+            </ImageListItem>
+            <UploadImageModal />
+          </>
         )}
-        {modalOpen && <UploadImageModal />}
       </ImageList>
     </ModalContext.Provider>
   );
