@@ -18,12 +18,19 @@ function GalleryMessage({ type, setGalleryMessageType, idToEdit }) {
         setGalleryMessageType(null);
         console.log("waiting for a new dishwasher bitches", res);
 
-        setTimeout(window.location.reload, 1500);
+        // setTimeout(window.location.reload, 1500);
       });
   }
 
   function handleEdit() {
     console.log("handle edit");
+    fetch(`/api/images/${idToEdit}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        title: "newtitle",
+        description: "hello description",
+      }),
+    });
   }
 
   if (type === "EDIT") {
