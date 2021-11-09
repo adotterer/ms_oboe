@@ -9,7 +9,23 @@ import UploadImageModal from "./UploadImageModal";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 
-function GalleryMessage({ type, setGalleryMessageType }) {
+function GalleryMessage({ type, setGalleryMessageType, idToEdit }) {
+  function handleDelete() {
+    return fetch(`/api/images/${idToEdit}/delete`)
+      .then((res) => res.json())
+      .then((res) => {
+        alert("deleted!");
+        setGalleryMessageType(null);
+        console.log("waiting for a new dishwasher bitches", res);
+
+        setTimeout(window.location.reload, 1500);
+      });
+  }
+
+  function handleEdit() {
+    console.log("handle edit");
+  }
+
   if (type === "EDIT") {
     return (
       <div>
@@ -25,7 +41,7 @@ function GalleryMessage({ type, setGalleryMessageType }) {
     return (
       <div>
         Are you sure you want to delete?
-        <button>Yes</button>
+        <button onClick={handleDelete}>Yes</button>
         <button onClick={() => setGalleryMessageType(null)}>No</button>
       </div>
     );
@@ -81,6 +97,7 @@ export default function Gallery() {
                 {authenticated && galleryMessageType && galleryMessageId === i && (
                   <div className="gallery__msg">
                     <GalleryMessage
+                      idToEdit={image.id}
                       type={galleryMessageType}
                       setGalleryMessageType={setGalleryMessageType}
                     />
