@@ -63,6 +63,7 @@ export default function Gallery() {
       >
         {imageData &&
           imageData.map((image, i) => {
+            console.log(image, "image object".padStart(20, "*"));
             return (
               <ImageListItem
                 style={{ cursor: "pointer" }}
