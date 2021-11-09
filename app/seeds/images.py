@@ -1,4 +1,3 @@
-from app.api.aws3 import delete_file_on_s3
 from app.models import db, Image
 
 image_data = [
@@ -16,7 +15,8 @@ image_data = [
         "URL": "https://mshippoboe.s3.us-west-1.amazonaws.com/phil_orch_3.jpg",
         "title": "Verizon Hall",
         "description": ""
-    }]
+    }
+]
 
 
 def seed_images():
