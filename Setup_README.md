@@ -27,7 +27,11 @@ This is the backend for the Flask React project.
    ```
 
    ```bash
-   f
+   flask db migrate
+   ```
+
+   ```bash
+   flask db update
    ```
 
    ```bash

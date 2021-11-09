@@ -22,8 +22,9 @@ image_data = [
 def seed_images():
 
     for image in image_data:
-        new_image = Image(URL=image.URL, title=image.title,
-                          description=image.description)
+        new_image = Image(URL=image["URL"],
+                          title=image["title"],
+                          description=image["description"])
         db.session.add(new_image)
 
     db.session.commit()
