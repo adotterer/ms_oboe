@@ -15,7 +15,7 @@
 
 .delete__modal__message,
 .upload__image__msg {
-  font-size: 1.5em;
+  font-size: 1.2em;
   background-color: rgba(253, 253, 253, 0.6);
   border-radius: 2em;
   padding: 0.9em;
@@ -40,8 +40,8 @@
 }
 
 #upload__image__modal > button {
-  width: 40%;
-  font-size: 1.2em;
+  width: 50%;
+  font-size: 1em;
   margin: 1rem auto;
 }
 
