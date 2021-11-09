@@ -7,7 +7,7 @@ export default function UploadImageModal() {
   const [selectedFile, setSelectedFile] = useState();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const formData = new FormData();
+  let formData = new FormData();
 
   const memoizedPreviewURL = useMemo(() => {
     if (selectedFile) return URL.createObjectURL(selectedFile);
@@ -18,6 +18,20 @@ export default function UploadImageModal() {
     formData.append("file", selectedFile);
     formData.append("title", title);
     formData.append("description", description);
+    fetch("/api/upload/image", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => {
+        formData = new FormData();
+        return res.json();
+      })
+      .then((res) => {
+        setModalOpen(false);
+
+        console.log("response from server: ", res);
+        setTimeout(() => window.location.reload(), 1500);
+      });
   };
   if (!modalOpen) return null;
   return (
