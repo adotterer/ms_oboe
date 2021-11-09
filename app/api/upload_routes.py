@@ -55,21 +55,22 @@ def upload_file():
 
 @upload_routes.route('/image',  methods=['POST'])
 @login_required
-def upload_file():
+def upload_image():
     try:
         new_file = request.files["file"]
         title = request.form['title']
         description = request.form['description']
         print(new_file, "new_file".rjust(15, '*'))
-        filename, extension = new_file.filename.split(".")
         new_image = Image(
             URL="",
-            title="",
-            description=""
+            title=title,
+            description=description
         )
 
         db.session.add(new_image)
         db.session.commit()
+        
+        filename, extension = new_file.filename.split(".")
         new_id = new_image.id
         new_file.filename = f"image_{new_id}_{filename}.{extension}"
         img_url = upload_file_to_s3(request.files["file"], "mshippoboe")

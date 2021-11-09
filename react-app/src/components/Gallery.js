@@ -21,21 +21,6 @@ const imageData = [
   {
     src: "https://mshippoboe.s3.us-west-1.amazonaws.com/phil_orch_3.jpg",
   },
-  {
-    src: "https://mshippoboe.s3.us-west-1.amazonaws.com/phil_orch_section_1.jpg",
-  },
-  {
-    src: "https://mshippoboe.s3.us-west-1.amazonaws.com/phil_orch_section_2.jpg",
-  },
-  {
-    src: "https://mshippoboe.s3.us-west-1.amazonaws.com/phil_orch_3.jpg",
-  },
-  {
-    src: "https://mshippoboe.s3.us-west-1.amazonaws.com/phil_orch_section_2.jpg",
-  },
-  {
-    src: "https://mshippoboe.s3.us-west-1.amazonaws.com/phil_orch_3.jpg",
-  },
 ];
 
 export default function Gallery() {

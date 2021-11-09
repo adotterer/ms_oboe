@@ -15,5 +15,5 @@ class Image(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     URL = db.Column(db.String, nullable=False)
-    title = db.Column(db.String, nullable=False)
+    title = db.Column(db.String, nullable=True)
     description = db.Column(db.String, nullable=True)
