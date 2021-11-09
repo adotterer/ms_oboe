@@ -6,6 +6,8 @@ import "./styles/gallery.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ModalContext from "./context/ModalContext";
 import UploadImageModal from "./UploadImageModal";
+import CancelIcon from "@mui/icons-material/Cancel";
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function Gallery() {
   const [zoomedPhotoId, setZoomedPhotoId] = useState(null);
@@ -46,6 +48,10 @@ export default function Gallery() {
                   alt={image.title}
                   loading="lazy"
                 />
+                <div className="gallery__controls">
+                  <EditIcon className="hover__crimson gallery__edit__icon" />
+                  <CancelIcon className="hover__crimson gallery__delete__icon" />
+                </div>
               </ImageListItem>
             );
           })}

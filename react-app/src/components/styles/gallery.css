@@ -27,11 +27,28 @@
   border-radius: 50%;
 }
 
-#upload__image__modal .cancel__icon:hover {
+#upload__image__modal .cancel__icon:hover,
+.hover__crimson:hover {
   color: crimson;
   cursor: pointer;
 }
 
+.gallery__controls {
+  position: absolute;
+  /* right: -0.5em; */
+  padding: 0.5em;
+  bottom: 0.9em;
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+  z-index: 50;
+  background-color: rgba(245, 245, 245, 0.3);
+  border-radius: 0.5em;
+}
+
+.gallery__controls:hover {
+  background-color: rgba(245, 245, 245, 0.87);
+}
 @media screen and (max-width: 600px) {
   #gallery__container {
     width: 100%;
