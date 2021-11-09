@@ -23,6 +23,8 @@
   right: -0.3em;
   top: -0.4em;
   font-size: 3.2em;
+  background-color: white;
+  border-radius: 50%;
 }
 
 #upload__image__modal .cancel__icon:hover {
