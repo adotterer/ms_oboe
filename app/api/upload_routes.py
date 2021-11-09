@@ -6,6 +6,8 @@ from .utils import prettifyComposer
 
 upload_routes = Blueprint('upload', __name__)
 
+# TODO: put these in Audio & Image API routes
+
 
 @upload_routes.route('/audio',  methods=['POST'])
 @login_required
