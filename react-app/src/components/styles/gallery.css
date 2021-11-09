@@ -34,9 +34,18 @@
 }
 
 .gallery__msg {
-
+  position: absolute;
+  margin: 25% auto;
+  padding: 0.5em;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0.5em;
+  width: 75%;
 }
 
+.gallery__msg div {
+  display: flex;
+  flex-direction: column;
+}
 .gallery__controls {
   position: absolute;
   padding: 0.5em;

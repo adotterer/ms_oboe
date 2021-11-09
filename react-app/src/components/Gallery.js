@@ -9,7 +9,28 @@ import UploadImageModal from "./UploadImageModal";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 
-function GalleryMessage() {}
+function GalleryMessage({ type, setGalleryMessageType }) {
+  if (type === "EDIT") {
+    return (
+      <div>
+        <label htmlFor="title">Title: </label>
+        <input name="title" type="text"></input>
+        <label htmlFor="description">Description: </label>
+        <input name="description" type="text"></input>
+        <button>Submit</button>
+        <button onClick={() => setGalleryMessageType(null)}>Cancel</button>
+      </div>
+    );
+  } else if (type === "DELETE") {
+    return (
+      <div>
+        Are you sure you want to delete?
+        <button>Yes</button>
+        <button onClick={() => setGalleryMessageType(null)}>No</button>
+      </div>
+    );
+  } else return null;
+}
 
 export default function Gallery() {
   const [zoomedPhotoId, setZoomedPhotoId] = useState(null);
@@ -17,6 +38,7 @@ export default function Gallery() {
   const [modalOpen, setModalOpen] = useState(false);
   const [imageData, setImageData] = useState(null);
   const [galleryMessageType, setGalleryMessageType] = useState(null);
+  const [galleryMessageId, setGalleryMessageId] = useState(null);
 
   useEffect(() => {
     if (!imageData) {
@@ -25,6 +47,10 @@ export default function Gallery() {
         .then((data) => setImageData(data));
     }
   }, [imageData]);
+
+  useEffect(() => {
+    if (!galleryMessageType) setGalleryMessageId(null);
+  }, [galleryMessageType]);
 
   return (
     <ModalContext.Provider value={{ modalOpen, setModalOpen }}>
@@ -51,16 +77,31 @@ export default function Gallery() {
                   alt={image.title}
                   loading="lazy"
                 />
+                {authenticated && galleryMessageType && galleryMessageId === i && (
+                  <div className="gallery__msg">
+                    <GalleryMessage
+                      type={galleryMessageType}
+                      setGalleryMessageType={setGalleryMessageType}
+                    />
+                  </div>
+                )}
                 {authenticated && (
-                  <>
-                    <div className="gallery__msg">
-                      {galleryMessageType && galleryMessageType}
-                    </div>
-                    <div className="gallery__controls">
-                      <EditIcon className="hover__crimson gallery__edit__icon" />
-                      <CancelIcon className="hover__crimson gallery__delete__icon" />
-                    </div>
-                  </>
+                  <div className="gallery__controls">
+                    <EditIcon
+                      onClick={() => {
+                        setGalleryMessageId(i);
+                        setGalleryMessageType("EDIT");
+                      }}
+                      className="hover__crimson gallery__edit__icon"
+                    />
+                    <CancelIcon
+                      onClick={() => {
+                        setGalleryMessageId(i);
+                        setGalleryMessageType("DELETE");
+                      }}
+                      className="hover__crimson gallery__delete__icon"
+                    />
+                  </div>
                 )}
               </ImageListItem>
             );
