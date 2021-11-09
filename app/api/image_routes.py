@@ -42,10 +42,11 @@ def edit_image(id):
         image_row_to_edit = Image.query.get(id)
         json_data = request.get_json()
         new_title = json_data["title"]
+        new_description = json_data["description"]
 
         image_row_to_edit.title = new_title
-        # image_row_to_edit.description = json_data["description"]
-        # print(request.json, "<--- request.json ".ljust(20, "-"))
+        image_row_to_edit.description = new_description
+
         db.session.commit()
         return jsonify(image_row_to_edit)
     except Exception as e:

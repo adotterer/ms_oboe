@@ -16,12 +16,9 @@ function GalleryMessage({ type, setGalleryMessageType, idToEdit }) {
   function handleDelete() {
     return fetch(`/api/images/${idToEdit}/delete`)
       .then((res) => res.json())
-      .then((res) => {
-        alert("deleted!");
+      .then(() => {
         setGalleryMessageType(null);
-        console.log("waiting for a new dishwasher bitches", res);
-
-        // setTimeout(window.location.reload, 1500);
+        window.location.reload();
       });
   }
 
