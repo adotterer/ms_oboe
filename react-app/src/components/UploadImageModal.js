@@ -2,6 +2,13 @@ import React, { useState } from "react";
 
 export default function UploadImageModal() {
   const [selectedFile, setSelectedFile] = useState();
+  const [title, setTitle] = useState();
+  const [description, setDescription] = useState();
+  const formData = new FormData();
+
+  const handleSubmit = function () {
+    formData.append("file", selectedFile);
+  };
 
   return (
     <div id="upload__image__modal">
@@ -22,7 +29,7 @@ export default function UploadImageModal() {
           setSelectedFile(file);
         }}
       />
-      <button>Upload</button>
+      <button onClick={handleSubmit}>Upload</button>
     </div>
   );
 }
