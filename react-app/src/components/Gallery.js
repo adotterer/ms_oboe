@@ -10,6 +10,9 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 
 function GalleryMessage({ type, setGalleryMessageType, idToEdit }) {
+  const [newTitle, setNewTitle] = useState("");
+  const [newDescription, setNewDescription] = useState("");
+
   function handleDelete() {
     return fetch(`/api/images/${idToEdit}/delete`)
       .then((res) => res.json())
@@ -26,21 +29,34 @@ function GalleryMessage({ type, setGalleryMessageType, idToEdit }) {
     console.log("handle edit");
     fetch(`/api/images/${idToEdit}`, {
       method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        title: "newtitle",
-        description: "hello description",
+        title: newTitle,
+        description: newDescription,
       }),
-    });
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res, "res"));
   }
 
   if (type === "EDIT") {
     return (
       <div>
         <label htmlFor="title">Title: </label>
-        <input name="title" type="text"></input>
+        <input
+          value={newTitle}
+          onChange={(e) => setNewTitle(e.target.value)}
+          name="title"
+          type="text"
+        ></input>
         <label htmlFor="description">Description: </label>
-        <input name="description" type="text"></input>
-        <button>Submit</button>
+        <input
+          value={newDescription}
+          onChange={(e) => setNewDescription(e.target.value)}
+          name="description"
+          type="text"
+        ></input>
+        <button onClick={handleEdit}>Submit</button>
         <button onClick={() => setGalleryMessageType(null)}>Cancel</button>
       </div>
     );

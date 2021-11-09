@@ -35,13 +35,19 @@ def delete_image(id):
         return {"error": e.__dict__}
 
 
-@image_routes.route('/<int:id>/',  methods=['PUT'])
+@image_routes.route('/<int:id>',  methods=['PUT'])
 @login_required
 def edit_image(id):
     try:
         image_row_to_edit = Image.query.get(id)
-        print(image_row_to_edit)
-        print(request.get_json(), "<--- request ".rjust(20, "-"))
+        json_data = request.get_json()
+        new_title = json_data["title"]
+
+        image_row_to_edit.title = new_title
+        # image_row_to_edit.description = json_data["description"]
+        # print(request.json, "<--- request.json ".ljust(20, "-"))
+        db.session.commit()
+        return jsonify(image_row_to_edit)
     except Exception as e:
         print("error", e)
         return {"error": e.__dict__}
