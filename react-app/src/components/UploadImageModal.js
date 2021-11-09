@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
 export default function UploadImageModal() {
   const [selectedFile, setSelectedFile] = useState();
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const formData = new FormData();
 
-  const handleSubmit = function () {
+  const memoizedPreviewURL = useMemo(() => {
+    if (selectedFile) return URL.createObjectURL(selectedFile);
+  }, [selectedFile]);
+
+  const handleSubmit = function (e) {
+    e.preventDefault();
     formData.append("file", selectedFile);
+    formData.append("title", title);
+    formData.append("description", description);
   };
 
   return (
-    <div id="upload__image__modal">
-      <div class="upload__image__msg">Upload a new image</div>
+    <form onSubmit={handleSubmit} id="upload__image__modal">
+      <div className="upload__image__msg">
+        {memoizedPreviewURL ? (
+          <img src={memoizedPreviewURL} alt="upload preview" />
+        ) : (
+          "Upload a new image"
+        )}
+      </div>
       <label htmlFor="title">Title:</label>
       <input
         value={title}
@@ -38,7 +51,7 @@ export default function UploadImageModal() {
           setSelectedFile(file);
         }}
       />
-      <button onClick={handleSubmit}>Upload</button>
-    </div>
+      <button>Upload</button>
+    </form>
   );
 }
