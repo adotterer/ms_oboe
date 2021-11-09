@@ -14,9 +14,18 @@ export default function UploadImageModal() {
     <div id="upload__image__modal">
       <div class="upload__image__msg">Upload a new image</div>
       <label htmlFor="title">Title:</label>
-      <input name="title" type="text"></input>
+      <input
+        value={title}
+        onChange={({ target: { value } }) => setTitle(value)}
+        name="title"
+        type="text"
+      ></input>
       <label htmlFor="description">Description:</label>
-      <input type="text"></input>
+      <input
+        value={description}
+        onChange={({ target: { value } }) => setDescription(value)}
+        type="text"
+      ></input>
       <input
         name="gallery"
         type="file"
