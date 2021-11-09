@@ -4,13 +4,13 @@
   flex-direction: column;
   justify-content: space-between;
   position: fixed;
-  top: 10rem;
-  left: 25vw;
+  top: 15vh;
+  left: 20vw;
   background-color: rgba(235, 235, 235, 0.95);
   width: 60%;
   z-index: 50;
   border-radius: 2em;
-  padding: 2em;
+  padding: 1.5em;
 }
 
 .delete__modal__message,
@@ -18,7 +18,7 @@
   font-size: 1.5em;
   background-color: rgba(253, 253, 253, 0.6);
   border-radius: 2em;
-  padding: 1em;
+  padding: 0.9em;
   text-align: center;
 }
 .delete__modal__container div,
@@ -65,4 +65,14 @@
 
 #upload__image__modal input:hover {
   border: 1px solid peru;
+}
+
+@media screen and (max-width: 600px) {
+  #upload__image__modal input {
+    padding: 0.5em;
+    font-size: 0.9em;
+  }
+  #upload__image__modal {
+    top: 15vh;
+  }
 }
