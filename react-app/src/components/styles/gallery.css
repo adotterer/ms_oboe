@@ -33,9 +33,12 @@
   cursor: pointer;
 }
 
+.gallery__msg {
+
+}
+
 .gallery__controls {
   position: absolute;
-  /* right: -0.5em; */
   padding: 0.5em;
   bottom: 0.9em;
   display: flex;

@@ -9,11 +9,14 @@ import UploadImageModal from "./UploadImageModal";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 
+function GalleryMessage() {}
+
 export default function Gallery() {
   const [zoomedPhotoId, setZoomedPhotoId] = useState(null);
   const { authenticated } = useContext(AuthContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [imageData, setImageData] = useState(null);
+  const [galleryMessageType, setGalleryMessageType] = useState(null);
 
   useEffect(() => {
     if (!imageData) {
@@ -48,10 +51,17 @@ export default function Gallery() {
                   alt={image.title}
                   loading="lazy"
                 />
-                <div className="gallery__controls">
-                  <EditIcon className="hover__crimson gallery__edit__icon" />
-                  <CancelIcon className="hover__crimson gallery__delete__icon" />
-                </div>
+                {authenticated && (
+                  <>
+                    <div className="gallery__msg">
+                      {galleryMessageType && galleryMessageType}
+                    </div>
+                    <div className="gallery__controls">
+                      <EditIcon className="hover__crimson gallery__edit__icon" />
+                      <CancelIcon className="hover__crimson gallery__delete__icon" />
+                    </div>
+                  </>
+                )}
               </ImageListItem>
             );
           })}
