@@ -109,8 +109,8 @@ export default function Gallery() {
                   if (window.screen.width > 650) setZoomedPhotoId(i);
                   else return;
                 }}
-                cols={zoomedPhotoId === i ? 2 : 1}
-                rows={zoomedPhotoId === i ? 2 : 1}
+                cols={1}
+                rows={1}
                 key={image.URL + "_" + i}
               >
                 <img
