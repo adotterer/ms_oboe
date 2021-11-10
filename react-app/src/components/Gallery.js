@@ -96,8 +96,8 @@ export default function Gallery() {
         style={{ margin: "0 auto" }}
         id="gallery__container"
         variant="quilted"
-        cols={3}
-        rowHeight={250}
+        cols={window.screen.width > 650 ? 3 : 2}
+        rowHeight={window.screen.width > 650 ? 250 : 200}
       >
         {imageData &&
           imageData.map((image, i) => {
@@ -105,7 +105,10 @@ export default function Gallery() {
             return (
               <ImageListItem
                 style={{ cursor: "pointer" }}
-                onClick={() => setZoomedPhotoId(i)}
+                onClick={() => {
+                  if (window.screen.width > 650) setZoomedPhotoId(i);
+                  else return;
+                }}
                 cols={zoomedPhotoId === i ? 2 : 1}
                 rows={zoomedPhotoId === i ? 2 : 1}
                 key={image.URL + "_" + i}
