@@ -113,4 +113,8 @@ $ flask db migrate     # To detect automatically all the changes.
 $ flask db upgrade     # To apply all the changes.
 ```
 
-k
+Tails:
+
+```bash
+heroku logs --tail -a mshippoboe
+```

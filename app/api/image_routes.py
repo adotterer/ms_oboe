@@ -7,6 +7,7 @@ from flask import json
 image_routes = Blueprint('images', __name__)
 
 
+@image_routes.route('')
 @image_routes.route('/')
 def send_gallery():
     try:
