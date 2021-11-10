@@ -14,7 +14,7 @@ function GalleryMessage({ type, setGalleryMessageType, idToEdit }) {
   const [newDescription, setNewDescription] = useState("");
 
   function handleDelete() {
-    return fetch(`/api/images/${idToEdit}/delete`)
+    fetch(`/api/images/${idToEdit}/delete`)
       .then((res) => res.json())
       .then(() => {
         setGalleryMessageType(null);
@@ -78,7 +78,9 @@ export default function Gallery() {
 
   useEffect(() => {
     if (!imageData) {
-      fetch("/api/images")
+      fetch("/api/images/")
+        // ERROR:
+        // Mixed Content: The page at 'https://www.matthewshippoboe.com/gallery' was loaded over HTTPS, but requested an insecure resource 'http://www.matthewshippoboe.com/api/images/'. This request has been blocked; the content must be served over HTTPS.
         .then((res) => res.json())
         .then((data) => setImageData(data));
     }
