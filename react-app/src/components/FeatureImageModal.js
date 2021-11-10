@@ -1,8 +1,8 @@
 import React from "react";
 
-export function FeatureImageModal({ image }) {
+export default function FeatureImageModal({ image, setFeaturedImageId }) {
   return (
-    <div id="feature__image__modal">
+    <div onClick={() => setFeaturedImageId(null)} id="feature__image__modal">
       <img src={image.URL} alt={image.title} />
     </div>
   );

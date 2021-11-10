@@ -6,6 +6,7 @@ import "./styles/gallery.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ModalContext from "./context/ModalContext";
 import UploadImageModal from "./UploadImageModal";
+import FeaturedImageModal from "./FeatureImageModal";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -21,9 +22,7 @@ function GalleryMessage({ type, setGalleryMessageType, idToEdit }) {
         window.location.reload();
       });
   }
-
   function handleEdit() {
-    console.log("handle edit");
     fetch(`/api/images/${idToEdit}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -53,24 +52,28 @@ function GalleryMessage({ type, setGalleryMessageType, idToEdit }) {
           name="description"
           type="text"
         ></input>
-        <button onClick={handleEdit}>Submit</button>
-        <button onClick={() => setGalleryMessageType(null)}>Cancel</button>
+        <span>
+          <button onClick={handleEdit}>Submit</button>
+          <button onClick={() => setGalleryMessageType(null)}>Cancel</button>
+        </span>
       </div>
     );
   } else if (type === "DELETE") {
     return (
       <div>
         Are you sure you want to delete?
-        <button onClick={handleDelete}>Yes</button>
-        <button onClick={() => setGalleryMessageType(null)}>No</button>
+        <span>
+          <button onClick={handleDelete}>Yes</button>
+          <button onClick={() => setGalleryMessageType(null)}>No</button>
+        </span>
       </div>
     );
   } else return null;
 }
 
 export default function Gallery() {
-  const [zoomedPhotoId, setZoomedPhotoId] = useState(null);
   const { authenticated } = useContext(AuthContext);
+  const [featuredImageId, setFeaturedImageId] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [imageData, setImageData] = useState(null);
   const [galleryMessageType, setGalleryMessageType] = useState(null);
@@ -101,24 +104,28 @@ export default function Gallery() {
       >
         {imageData &&
           imageData.map((image, i) => {
-            console.log(image, "image object".padStart(20, "*"));
             return (
               <ImageListItem
                 style={{ cursor: "pointer" }}
-                onClick={() => {
-                  if (window.screen.width > 650) setZoomedPhotoId(i);
-                  else return;
-                }}
+                onClick={() => {}}
                 cols={1}
                 rows={1}
                 key={image.URL + "_" + i}
               >
+                {featuredImageId === i && (
+                  <FeaturedImageModal
+                    setFeaturedImageId={setFeaturedImageId}
+                    image={image}
+                  />
+                )}
                 <img
                   src={image.URL}
+                  onClick={() => setFeaturedImageId(i)}
                   // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                   alt={image.title}
                   loading="lazy"
                 />
+
                 {authenticated && galleryMessageType && galleryMessageId === i && (
                   <div className="gallery__msg">
                     <GalleryMessage
