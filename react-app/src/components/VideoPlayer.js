@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect, useMemo } from "react";
 import "./styles/gallery.css";
+import "./styles/video.css";
 import FeatureModal from "./FeatureModal";
 import AuthContext from "./context/AuthContext";
 import ModalContext from "./context/ModalContext";
@@ -9,6 +10,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import { getThumbnailURL } from "./utils";
 
 export default function VideoPlayer() {
@@ -25,7 +27,7 @@ export default function VideoPlayer() {
         .then((res) => res.json())
         .then((data) => setVideoData(data));
     }
-    console.log(videoData, "<--- video data".padEnd(20, "%"));
+    // console.log(videoData, "<--- video data".padEnd(20, "%"));
   }, [videoData]);
   return (
     <ModalContext.Provider value={{ modalOpen, setModalOpen }}>
@@ -51,6 +53,10 @@ export default function VideoPlayer() {
                   // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                   alt={video.title}
                   loading="lazy"
+                />
+                <PlayCircleOutlineIcon
+                  sx={{ fontSize: "4em" }}
+                  className="play__icon"
                 />
                 {authenticated && (
                   <div className="gallery__controls">
@@ -84,7 +90,7 @@ export default function VideoPlayer() {
             >
               <AddCircleIcon
                 id="upload__icon__gallery"
-                sx={{ fontSize: "8em" }}
+                sx={{ fontSize: "7em" }}
                 onClick={() => setModalOpen(true)}
               />
             </ImageListItem>

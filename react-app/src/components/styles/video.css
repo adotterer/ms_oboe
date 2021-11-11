@@ -15,3 +15,16 @@
   border-bottom: 1px solid black;
   font-size: 1.2em;
 }
+
+.play__icon {
+  position: absolute;
+  top: 38%;
+  color: whitesmoke;
+  background-color: rgba(8, 8, 8, 0.5);
+  border-radius: 50%;
+}
+
+.play__icon:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: rgb(225, 216, 41);
+}
