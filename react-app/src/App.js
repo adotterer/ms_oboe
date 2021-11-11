@@ -10,6 +10,7 @@ import Container from "./components/Container";
 import Bio from "./components/Bio";
 import Gallery from "./components/Gallery";
 import { AudioPlayer } from "./components/AudioPlayer";
+import VideoPlayer from "./components/VideoPlayer";
 import SelectedAudioContext from "./components/context/SelectedAudioContext";
 import AuthContext from "./components/context/AuthContext";
 import { logout } from "./services/auth";
@@ -82,7 +83,9 @@ function App() {
               <Route path="/audio">
                 <AudioPlayer />
               </Route>
-              <Route path="/video">video</Route>
+              <Route path="/video">
+                <VideoPlayer />
+              </Route>
               <ProtectedRoute path="/users" exact authenticated={authenticated}>
                 <UsersList />
               </ProtectedRoute>
