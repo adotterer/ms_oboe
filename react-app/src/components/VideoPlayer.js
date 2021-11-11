@@ -1,9 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
+import "./styles/gallery.css";
 import FeatureModal from "./FeatureModal";
 import AuthContext from "./context/AuthContext";
 import ModalContext from "./context/ModalContext";
+import AddVideoForm from "./AddVideoForm";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -28,7 +31,7 @@ export default function VideoPlayer() {
       <div>Hello from video</div>
       <ImageList
         style={{ margin: "0 auto" }}
-        id="gallery__container"
+        id="video__container"
         variant="quilted"
         cols={window.screen.width > 650 ? 3 : 2}
         rowHeight={window.screen.width > 650 ? 250 : 200}
@@ -70,6 +73,29 @@ export default function VideoPlayer() {
               </ImageListItem>
             );
           })}
+        {authenticated && (
+          <>
+            <ImageListItem
+              id="upload__to_gallery"
+              onClick={() => null}
+              cols={1}
+              rows={1}
+              key={"uploader"}
+            >
+              <AddCircleIcon
+                id="upload__icon__gallery"
+                sx={{ fontSize: "8em" }}
+                onClick={() => setModalOpen(true)}
+              />
+            </ImageListItem>
+            {modalOpen && (
+              <FeatureModal>
+                <AddVideoForm />
+              </FeatureModal>
+            )}
+            {/* <UploadImageModal /> */}
+          </>
+        )}
       </ImageList>
     </ModalContext.Provider>
   );
