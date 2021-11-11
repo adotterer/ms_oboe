@@ -11,6 +11,8 @@ import GalleryMessage from "./GalleryMessage";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 
+
+
 export default function Gallery() {
   const { authenticated } = useContext(AuthContext);
   const [featuredImageId, setFeaturedImageId] = useState(null);
