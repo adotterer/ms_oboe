@@ -147,6 +147,8 @@
   .video__caption {
     overflow: visible;
     max-height: unset;
+    padding: 0.2em;
+    font-size: 0.75em;
   }
   #video__container {
     width: 95%;
