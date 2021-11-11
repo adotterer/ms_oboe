@@ -6,7 +6,7 @@ import "./styles/gallery.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ModalContext from "./context/ModalContext";
 import UploadImageModal from "./UploadImageModal";
-import FeaturedImageModal from "./FeatureImageModal";
+import FeatureModal from "./FeatureModal";
 import GalleryMessage from "./GalleryMessage";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
@@ -52,10 +52,13 @@ export default function Gallery() {
                 key={image.URL + "_" + i}
               >
                 {featuredImageId === i && (
-                  <FeaturedImageModal
-                    setFeaturedImageId={setFeaturedImageId}
-                    image={image}
-                  />
+                  <FeatureModal>
+                    <img
+                      onClick={() => setFeaturedImageId(null)}
+                      src={image.URL}
+                      alt={image.title}
+                    />
+                  </FeatureModal>
                 )}
                 <img
                   src={image.URL}
