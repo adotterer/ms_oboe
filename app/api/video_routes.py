@@ -42,6 +42,24 @@ def add_video():
         return {"error": e.__dict__}
 
 
+@video_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def edit_video(id):
+    try:
+        video_row_to_edit = Video.query.get(id)
+        json_data = request.get_json()
+        new_title = json_data["title"]
+        new_description = json_data["description"]
+
+        video_row_to_edit.title = new_title
+        video_row_to_edit.description = new_description
+
+        db.session.commit()
+        return jsonify(video_row_to_edit)
+    except Exception as e:
+        return {"error": e.__dict__}
+
+
 @video_routes.route("/<int:id>/delete")
 @login_required
 def delete_video(id):

@@ -64,18 +64,34 @@
   float: clear;
   position: relative;
   font-size: 0.8em;
-  padding: 0.1em 2.3em;
+  padding: 0.1em 2.1em;
   max-height: 1.4rem;
   overflow: hidden;
-  text-align: justify;
+  background-color: whitesmoke;
 }
 .video__caption:hover {
+  max-height: unset;
   overflow: visible;
 }
 .video__list div.gallery__controls {
   bottom: unset;
   top: 10em;
 }
+
+.video__msg {
+  position: absolute;
+  margin: 10px auto;
+  padding: 0.5em;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0.5em;
+  width: 75%;
+}
+
+.video__msg div {
+  display: flex;
+  flex-direction: column;
+}
+
 @media screen and (max-width: 600px) {
   .video-responsive > iframe {
     width: 88vw;
@@ -89,5 +105,16 @@
   }
   #add__video__form {
     width: 88vw;
+  }
+  .video__list div.gallery__controls {
+    bottom: unset;
+    top: 7.2em;
+  }
+  .play__icon {
+    top: 3rem;
+  }
+  .video__caption {
+    overflow: visible;
+    max-height: unset;
   }
 }

@@ -6,6 +6,7 @@ import AuthContext from "./context/AuthContext";
 import ModalContext from "./context/ModalContext";
 import AddVideoForm from "./AddVideoForm";
 import YoutubeEmbed from "./YoutubeEmbed";
+import VideoMessage from "./VideoMessage";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -74,6 +75,15 @@ export default function VideoPlayer() {
                   sx={{ fontSize: "4em" }}
                   className="play__icon"
                 />
+                {authenticated && videoMessageId === i && videoMessageType && (
+                  <div className="video__msg">
+                    <VideoMessage
+                      type={videoMessageType}
+                      setVideoMessageType={setVideoMessageType}
+                      idToEdit={video.id}
+                    />
+                  </div>
+                )}
                 {authenticated && (
                   <div className="gallery__controls">
                     <EditIcon
