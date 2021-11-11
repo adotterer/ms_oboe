@@ -11,6 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.upload_routes import upload_routes
 from .api.audio_routes import audio_routes
 from .api.image_routes import image_routes
+from .api.video_routes import video_routes
 from .api.aws3 import *
 from werkzeug.utils import secure_filename
 
@@ -48,6 +49,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(upload_routes, url_prefix='/api/upload')
 app.register_blueprint(audio_routes, url_prefix='/api/audio')
 app.register_blueprint(image_routes, url_prefix='/api/images')
+app.register_blueprint(video_routes, url_prefix='/api/videos')
 db.init_app(app)
 Migrate(app, db)
 

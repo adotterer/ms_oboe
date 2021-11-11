@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, session, request, redirect, json
 from app.models import Video, db
 # from .aws3 import delete_file_on_s3
 
-video_routes = Blueprint('video', __name__)
+video_routes = Blueprint('videos', __name__)
 
 
 @video_routes.route('')
