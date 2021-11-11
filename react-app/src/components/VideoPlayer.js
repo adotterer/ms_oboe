@@ -22,10 +22,7 @@ export default function VideoPlayer() {
   const [videoMessageId, setVideoMessageId] = useState(null);
   const [videoMessageType, setVideoMessageType] = useState(null);
   const [featuredVideoId, setFeaturedVideoId] = useState(null);
-  useEffect(() => {
-    console.log(featuredVideoId, "featuredVideoId");
-    console.log(typeof featuredVideoId, "boolean");
-  }, [featuredVideoId]);
+
   useEffect(() => {
     if (!videoData) {
       fetch("/api/videos/")
@@ -40,7 +37,7 @@ export default function VideoPlayer() {
         id="video__container"
         variant="quilted"
         cols={window.screen.width > 650 ? 2 : 1}
-        rowHeight={window.screen.width > 650 ? 280 : 240}
+        rowHeight={window.screen.width > 650 ? 320 : 300}
       >
         {videoData &&
           videoData.map((video, i) => {
