@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useMemo } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./styles/gallery.css";
 import "./styles/video.css";
 import FeatureModal from "./FeatureModal";
@@ -31,7 +31,6 @@ export default function VideoPlayer() {
         .then((res) => res.json())
         .then((data) => setVideoData(data));
     }
-    // console.log(videoData, "<--- video data".padEnd(20, "%"));
   }, [videoData]);
   return (
     <ModalContext.Provider value={{ modalOpen, setModalOpen }}>
@@ -40,27 +39,33 @@ export default function VideoPlayer() {
         id="video__container"
         variant="quilted"
         cols={window.screen.width > 650 ? 2 : 1}
-        rowHeight={window.screen.width > 650 ? 350 : 250}
+        rowHeight={window.screen.width > 650 ? 280 : 240}
       >
         {videoData &&
           videoData.map((video, i) => {
             return (
               <ImageListItem
+                className="video__list"
                 style={{ cursor: "pointer" }}
                 cols={1}
                 rows={1}
                 key={video.URL + "_" + i}
               >
-                <img
-                  src={getThumbnailURL(video.URL)}
-                  onClick={() => {
-                    setModalOpen(true);
-                    setFeaturedVideoId(i);
-                  }}
-                  // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                  alt={video.title}
-                  loading="lazy"
-                />
+                <span className="video__list__item">
+                  <img
+                    src={getThumbnailURL(video.URL)}
+                    onClick={() => {
+                      setModalOpen(true);
+                      setFeaturedVideoId(i);
+                    }}
+                    // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                    alt={video.title}
+                    loading="lazy"
+                  />
+                  <figcaption className="video__caption">
+                    {video.title}
+                  </figcaption>
+                </span>
                 <PlayCircleOutlineIcon
                   onClick={() => {
                     setModalOpen(true);

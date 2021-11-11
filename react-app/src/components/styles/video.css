@@ -18,7 +18,7 @@
 
 .play__icon {
   position: absolute;
-  top: 38%;
+  top: 4rem;
   color: whitesmoke;
   background-color: rgba(8, 8, 8, 0.5);
   border-radius: 50%;
@@ -33,7 +33,7 @@
   /* display: flex; */
   position: absolute;
   top: 5rem;
-  right: 5rem;
+  right: 0.4rem;
   background-color: black;
   border-radius: 50%;
   color: whitesmoke;
@@ -47,10 +47,35 @@
 .video-responsive > iframe {
   /* width: 853px; */
   /* height: 480px; */
-  width: 52rem;
+  width: 53rem;
   height: 33rem;
 }
+.video__list__item {
+  flex: flex;
+  flex-direction: column;
 
+  /* border: 1px solid rgb(32, 32, 32); */
+}
+.video__list__item img {
+  margin: 0 auto;
+}
+.video__caption {
+  display: flex;
+  float: clear;
+  position: relative;
+  font-size: 0.8em;
+  padding: 0.1em 2.3em;
+  max-height: 1.4rem;
+  overflow: hidden;
+  text-align: justify;
+}
+.video__caption:hover {
+  overflow: visible;
+}
+.video__list div.gallery__controls {
+  bottom: unset;
+  top: 10em;
+}
 @media screen and (max-width: 600px) {
   .video-responsive > iframe {
     width: 88vw;
