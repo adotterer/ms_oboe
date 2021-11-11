@@ -5,6 +5,7 @@ import FeatureModal from "./FeatureModal";
 import AuthContext from "./context/AuthContext";
 import ModalContext from "./context/ModalContext";
 import AddVideoForm from "./AddVideoForm";
+import YoutubeEmbed from "./YoutubeEmbed";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -20,7 +21,10 @@ export default function VideoPlayer() {
   const [videoMessageId, setVideoMessageId] = useState(null);
   const [videoMessageType, setVideoMessageType] = useState(null);
   const [featuredVideoId, setFeaturedVideoId] = useState(null);
-
+  useEffect(() => {
+    console.log(featuredVideoId, "featuredVideoId");
+    console.log(typeof featuredVideoId, "boolean");
+  }, [featuredVideoId]);
   useEffect(() => {
     if (!videoData) {
       fetch("/api/videos/")
@@ -49,12 +53,19 @@ export default function VideoPlayer() {
               >
                 <img
                   src={getThumbnailURL(video.URL)}
-                  onClick={() => setFeaturedVideoId(i)}
+                  onClick={() => {
+                    setModalOpen(true);
+                    setFeaturedVideoId(i);
+                  }}
                   // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                   alt={video.title}
                   loading="lazy"
                 />
                 <PlayCircleOutlineIcon
+                  onClick={() => {
+                    setModalOpen(true);
+                    setFeaturedVideoId(i);
+                  }}
                   sx={{ fontSize: "4em" }}
                   className="play__icon"
                 />
@@ -74,6 +85,15 @@ export default function VideoPlayer() {
                       }}
                       className="hover__crimson gallery__delete__icon"
                     />
+                    {modalOpen && featuredVideoId === i && (
+                      <FeatureModal>
+                        <YoutubeEmbed embedURL={video.URL} />
+                        <CancelIcon
+                          sx={{ fontSize: "6em" }}
+                          className="video__close__modal__icon"
+                        />
+                      </FeatureModal>
+                    )}
                   </div>
                 )}
               </ImageListItem>
@@ -94,7 +114,7 @@ export default function VideoPlayer() {
                 onClick={() => setModalOpen(true)}
               />
             </ImageListItem>
-            {modalOpen && (
+            {modalOpen && typeof featuredVideoId !== "number" && (
               <FeatureModal>
                 <AddVideoForm />
               </FeatureModal>
