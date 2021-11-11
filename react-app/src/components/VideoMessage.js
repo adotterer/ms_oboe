@@ -10,7 +10,8 @@ export default function VideoMessage({ type, setVideoMessageType, idToEdit }) {
       .then(() => {
         setVideoMessageType(null);
         window.location.reload();
-      });
+      })
+      .catch((e) => console.log(e));
   }
   function handleEdit() {
     fetch(`/api/videos/${idToEdit}`, {
@@ -22,7 +23,8 @@ export default function VideoMessage({ type, setVideoMessageType, idToEdit }) {
       }),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res, "res"));
+      .then(() => window.location.reload())
+      .catch((e) => console.log(e));
   }
 
   if (type === "EDIT") {
