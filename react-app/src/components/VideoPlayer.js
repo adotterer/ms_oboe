@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useMemo } from "react";
 import "./styles/gallery.css";
 import FeatureModal from "./FeatureModal";
 import AuthContext from "./context/AuthContext";
@@ -9,6 +9,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
+import { getThumbnailURL } from "./utils";
 
 export default function VideoPlayer() {
   const { authenticated } = useContext(AuthContext);
@@ -46,7 +47,7 @@ export default function VideoPlayer() {
                 key={video.URL + "_" + i}
               >
                 <img
-                  src={video.URL}
+                  src={getThumbnailURL(video.URL)}
                   onClick={() => setFeaturedVideoId(i)}
                   // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                   alt={video.title}

@@ -12,6 +12,10 @@ video_routes = Blueprint('videos', __name__)
 def send_videos():
     try:
         videos = Video.query.all()
+        # for video in videos:
+        #     _, embed_code = video.URL.split("https://www.youtube.com/embed/")
+        #     print(embed_code, "embed_code")
+        #     video["thumbnail_URL"] = f"https://img.youtube.com/vi/{embed_code}/default.jpg"
         videos_json = jsonify(videos)
         return videos_json
     except Exception as e:
