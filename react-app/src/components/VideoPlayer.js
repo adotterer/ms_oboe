@@ -73,7 +73,20 @@ export default function VideoPlayer() {
                       }}
                       sx={{ fontSize: "4em" }}
                     />
-
+                    {modalOpen && featuredVideoId === i && (
+                      <FeatureModal>
+                        <YoutubeEmbed embedURL={video.URL} />
+                        <CancelIcon
+                          onClick={() => {
+                            setVideoMessageId(null);
+                            setModalOpen(false);
+                            setFeaturedVideoId(null);
+                          }}
+                          sx={{ fontSize: "6em" }}
+                          className="video__close__modal__icon"
+                        />
+                      </FeatureModal>
+                    )}
                     {authenticated && (
                       <div className="video__controls">
                         <EditIcon
@@ -90,20 +103,6 @@ export default function VideoPlayer() {
                           }}
                           className="hover__crimson gallery__delete__icon"
                         />
-                        {modalOpen && featuredVideoId === i && (
-                          <FeatureModal>
-                            <YoutubeEmbed embedURL={video.URL} />
-                            <CancelIcon
-                              onClick={() => {
-                                setVideoMessageId(null);
-                                setModalOpen(false);
-                                setFeaturedVideoId(null);
-                              }}
-                              sx={{ fontSize: "6em" }}
-                              className="video__close__modal__icon"
-                            />
-                          </FeatureModal>
-                        )}
                       </div>
                     )}
                     {authenticated && videoMessageId === i && videoMessageType && (
