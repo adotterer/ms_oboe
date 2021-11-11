@@ -1,0 +1,17 @@
+#add__video__form {
+  background-color: whitesmoke;
+  width: 50%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2em;
+}
+
+#add__video__form input,
+#add__video__form div {
+  margin: 0 0 1em 0;
+}
+#add__video__form div {
+  border-bottom: 1px solid black;
+  font-size: 1.2em;
+}
