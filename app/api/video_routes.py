@@ -1,5 +1,6 @@
 from flask_login import login_required
 from flask import Blueprint, jsonify, session, request, redirect, json
+from app.api.auth_routes import login
 from app.models import Video, db
 # from .aws3 import delete_file_on_s3
 
@@ -21,7 +22,7 @@ def send_videos():
 @video_routes.route("", methods=["POST"])
 @video_routes.route("/", methods=["POST"])
 @login_required
-def upload_video():
+def add_video():
     try:
         url = request.form['URL']
         title = request.form['title']
@@ -38,4 +39,17 @@ def upload_video():
 
         return jsonify(new_video)
     except Exception as e:
+        return {"error": e.__dict__}
+
+
+@video_routes.route("/<int:id>/delete")
+@login_required
+def delete_video(id):
+    try:
+        video_to_delete = Video.query.get(id)
+        db.session.delete(video_to_delete)
+        db.session.commit()
+        return {"msg": f'deleted resorce at id: {id}'}
+    except Exception as e:
+        print("error ---->", e)
         return {"error": e.__dict__}
