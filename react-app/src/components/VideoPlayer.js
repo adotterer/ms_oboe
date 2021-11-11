@@ -39,8 +39,8 @@ export default function VideoPlayer() {
         style={{ margin: "0 auto" }}
         id="video__container"
         variant="quilted"
-        cols={window.screen.width > 650 ? 3 : 2}
-        rowHeight={window.screen.width > 650 ? 250 : 200}
+        cols={window.screen.width > 650 ? 2 : 1}
+        rowHeight={window.screen.width > 650 ? 350 : 250}
       >
         {videoData &&
           videoData.map((video, i) => {
@@ -89,6 +89,11 @@ export default function VideoPlayer() {
                       <FeatureModal>
                         <YoutubeEmbed embedURL={video.URL} />
                         <CancelIcon
+                          onClick={() => {
+                            setVideoMessageId(null);
+                            setModalOpen(false);
+                            setFeaturedVideoId(null);
+                          }}
                           sx={{ fontSize: "6em" }}
                           className="video__close__modal__icon"
                         />

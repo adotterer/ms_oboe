@@ -62,4 +62,7 @@
     right: 1vw;
     z-index: 88;
   }
+  #add__video__form {
+    width: 88vw;
+  }
 }
