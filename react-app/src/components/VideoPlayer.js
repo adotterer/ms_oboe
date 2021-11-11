@@ -53,69 +53,73 @@ export default function VideoPlayer() {
                 key={video.URL + "_" + i}
               >
                 <span className="video__list__item">
-                  <img
-                    src={getThumbnailURL(video.URL)}
-                    onClick={() => {
-                      setModalOpen(true);
-                      setFeaturedVideoId(i);
-                    }}
-                    // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                    alt={video.title}
-                    loading="lazy"
-                  />
+                  <span className="img__video__msg__container">
+                    <img
+                      src={getThumbnailURL(video.URL)}
+                      onClick={() => {
+                        setModalOpen(true);
+                        setFeaturedVideoId(i);
+                      }}
+                      // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      alt={video.title}
+                      loading="lazy"
+                    />
+
+                    <PlayCircleOutlineIcon
+                      className="play__icon"
+                      onClick={() => {
+                        setModalOpen(true);
+                        setFeaturedVideoId(i);
+                      }}
+                      sx={{ fontSize: "4em" }}
+                    />
+
+                    {authenticated && (
+                      <div className="video__controls">
+                        <EditIcon
+                          onClick={() => {
+                            setVideoMessageId(i);
+                            setVideoMessageType("EDIT");
+                          }}
+                          className="hover__crimson gallery__edit__icon"
+                        />
+                        <CancelIcon
+                          onClick={() => {
+                            setVideoMessageId(i);
+                            setVideoMessageType("DELETE");
+                          }}
+                          className="hover__crimson gallery__delete__icon"
+                        />
+                        {modalOpen && featuredVideoId === i && (
+                          <FeatureModal>
+                            <YoutubeEmbed embedURL={video.URL} />
+                            <CancelIcon
+                              onClick={() => {
+                                setVideoMessageId(null);
+                                setModalOpen(false);
+                                setFeaturedVideoId(null);
+                              }}
+                              sx={{ fontSize: "6em" }}
+                              className="video__close__modal__icon"
+                            />
+                          </FeatureModal>
+                        )}
+                      </div>
+                    )}
+                    {authenticated && videoMessageId === i && videoMessageType && (
+                      <div className="video__msg">
+                        <VideoMessage
+                          type={videoMessageType}
+                          setVideoMessageType={setVideoMessageType}
+                          idToEdit={video.id}
+                        />
+                      </div>
+                    )}
+                  </span>
                   <figcaption className="video__caption">
                     {video.title}
                   </figcaption>
                 </span>
-                <PlayCircleOutlineIcon
-                  onClick={() => {
-                    setModalOpen(true);
-                    setFeaturedVideoId(i);
-                  }}
-                  sx={{ fontSize: "4em" }}
-                  className="play__icon"
-                />
-                {authenticated && videoMessageId === i && videoMessageType && (
-                  <div className="video__msg">
-                    <VideoMessage
-                      type={videoMessageType}
-                      setVideoMessageType={setVideoMessageType}
-                      idToEdit={video.id}
-                    />
-                  </div>
-                )}
-                {authenticated && (
-                  <div className="gallery__controls">
-                    <EditIcon
-                      onClick={() => {
-                        setVideoMessageId(i);
-                        setVideoMessageType("EDIT");
-                      }}
-                      className="hover__crimson gallery__edit__icon"
-                    />
-                    <CancelIcon
-                      onClick={() => {
-                        setVideoMessageId(i);
-                        setVideoMessageType("DELETE");
-                      }}
-                      className="hover__crimson gallery__delete__icon"
-                    />
-                    {modalOpen && featuredVideoId === i && (
-                      <FeatureModal>
-                        <YoutubeEmbed embedURL={video.URL} />
-                        <CancelIcon
-                          onClick={() => {
-                            setVideoMessageId(null);
-                            setModalOpen(false);
-                            setFeaturedVideoId(null);
-                          }}
-                          sx={{ fontSize: "6em" }}
-                          className="video__close__modal__icon"
-                        />
-                      </FeatureModal>
-                    )}
-                  </div>
-                )}
               </ImageListItem>
             );
           })}

@@ -1,3 +1,8 @@
+#video__container {
+  width: 80%;
+  height: 100%;
+}
+
 #add__video__form {
   background-color: whitesmoke;
   width: 50%;
@@ -16,9 +21,20 @@
   font-size: 1.2em;
 }
 
+.img__video__msg__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .play__icon {
+  display: flex;
+  /* width: 100%; */
   position: absolute;
-  top: 4rem;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.play__icon {
   color: whitesmoke;
   background-color: rgba(8, 8, 8, 0.5);
   border-radius: 50%;
@@ -61,7 +77,6 @@
 }
 .video__caption {
   display: flex;
-  float: clear;
   position: relative;
   font-size: 0.8em;
   padding: 0.1em 2.1em;
@@ -73,13 +88,28 @@
   max-height: unset;
   overflow: visible;
 }
-.video__list div.gallery__controls {
-  bottom: unset;
-  top: 10em;
+
+.video__controls {
+  position: absolute;
+  padding: 0.5em;
+  margin-bottom: 0.3em;
+  align-self: flex-end;
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+  z-index: 50;
+  background-color: rgba(245, 245, 245, 0.3);
+  border-radius: 0.5em;
+}
+
+.video__controls:hover {
+  background-color: rgba(245, 245, 245, 0.87);
 }
 
 .video__msg {
   position: absolute;
+  top: 0;
+
   margin: 10px auto;
   padding: 0.5em;
   background-color: rgba(255, 255, 255, 0.9);
@@ -107,15 +137,18 @@
   #add__video__form {
     width: 88vw;
   }
-  .video__list div.gallery__controls {
-    bottom: unset;
-    top: 7.2em;
+  .video__list div.video__controls {
+    padding: 0.3em;
   }
   .play__icon {
-    top: 3rem;
+    /* top: 3rem; */
+    font-size: 3.3em !important;
   }
   .video__caption {
     overflow: visible;
     max-height: unset;
+  }
+  #video__container {
+    width: 95%;
   }
 }
