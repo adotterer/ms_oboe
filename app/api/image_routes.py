@@ -26,7 +26,6 @@ def delete_image(id):
         image_file_to_delete = Image.query.get(id)
         _, s3_key = image_file_to_delete.URL.split(
             "https://mshippoboe.s3.us-west-1.amazonaws.com/")
-        print(s3_key, "s3_key".ljust(20, "*"))
         delete_file_on_s3("mshippoboe", s3_key)
         db.session.delete(image_file_to_delete)
         db.session.commit()

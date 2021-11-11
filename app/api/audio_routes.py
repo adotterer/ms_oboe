@@ -1,10 +1,10 @@
 from flask_login import login_required
-from flask import Blueprint, jsonify, session, request, redirect
+from flask import Blueprint, jsonify, session, request, redirect, json
 from app.models import Audio, db
 from .aws3 import delete_file_on_s3
-from flask import json
 
 audio_routes = Blueprint('audio', __name__)
+
 
 @audio_routes.route('/all')
 def send_audio():
