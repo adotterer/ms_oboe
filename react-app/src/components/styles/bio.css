@@ -28,4 +28,8 @@ img {
   #div__bio_container {
     margin: 0 0.2em;
   }
+
+  #article__bio {
+    padding: 0.35em;
+  }
 }
