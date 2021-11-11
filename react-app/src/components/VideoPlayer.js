@@ -37,7 +37,7 @@ export default function VideoPlayer() {
         id="video__container"
         variant="quilted"
         cols={window.screen.width > 650 ? 2 : 1}
-        rowHeight={window.screen.width > 650 ? 320 : 300}
+        // rowHeight={window.screen.width > 650 ? 370 : 400}
       >
         {videoData &&
           videoData.map((video, i) => {
