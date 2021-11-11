@@ -93,7 +93,6 @@ export default function VideoPlayer() {
                 <AddVideoForm />
               </FeatureModal>
             )}
-            {/* <UploadImageModal /> */}
           </>
         )}
       </ImageList>

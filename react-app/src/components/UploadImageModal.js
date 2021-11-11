@@ -28,8 +28,6 @@ export default function UploadImageModal() {
       })
       .then((res) => {
         setModalOpen(false);
-
-        console.log("response from server: ", res);
         setTimeout(() => window.location.reload(), 1500);
       });
   };
