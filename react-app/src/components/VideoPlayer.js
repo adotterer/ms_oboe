@@ -29,7 +29,6 @@ export default function VideoPlayer() {
   }, [videoData]);
   return (
     <ModalContext.Provider value={{ modalOpen, setModalOpen }}>
-      <div>Hello from video</div>
       <ImageList
         style={{ margin: "0 auto" }}
         id="video__container"
