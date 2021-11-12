@@ -15,7 +15,6 @@ export default function VideoPlayer() {
   const { authenticated } = useContext(AuthContext);
   const [videoData, setVideoData] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
-
   const [featuredVideoId, setFeaturedVideoId] = useState(null);
 
   useEffect(() => {

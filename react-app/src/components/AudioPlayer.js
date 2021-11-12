@@ -8,8 +8,8 @@ import AuthContext from "./context/AuthContext";
 
 export function AudioPlayer() {
   const { authenticated } = useContext(AuthContext);
-  const [tracklists, setTracklists] = useState();
   const { selectedAudio, setSelectedAudio } = useContext(SelectedAudioContext);
+  const [tracklists, setTracklists] = useState();
   const [modalOpen, setModalOpen] = useState(false);
   const [trackIdToDelete, setTrackIdToDelete] = useState();
 
