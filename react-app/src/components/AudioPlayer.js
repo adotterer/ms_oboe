@@ -11,6 +11,7 @@ export function AudioPlayer() {
   const [tracklists, setTracklists] = useState();
   const { selectedAudio, setSelectedAudio } = useContext(SelectedAudioContext);
   const [modalOpen, setModalOpen] = useState(false);
+  const [trackIdToDelete, setTrackIdToDelete] = useState();
 
   useEffect(() => {
     if (!tracklists) {
@@ -38,12 +39,15 @@ export function AudioPlayer() {
                   {authenticated && (
                     <span
                       className="delete__icon"
-                      onClick={() => setModalOpen(true)}
+                      onClick={() => {
+                        setTrackIdToDelete(tracklist.id);
+                        setModalOpen(true);
+                      }}
                     >
                       <i className="fas fa-trash-alt"></i>
                     </span>
                   )}
-                  {modalOpen && <DeleteModal objId={tracklist.id} />}
+                  {modalOpen && <DeleteModal objId={trackIdToDelete} />}
                 </li>
               );
             })}

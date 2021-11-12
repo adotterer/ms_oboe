@@ -1,6 +1,7 @@
 from flask_login import login_required
 from flask import Blueprint, jsonify, session, request, redirect, json
-from app.models import Audio, db
+from sqlalchemy import select
+from app.models import Audio, Ranking, db
 from .aws3 import delete_file_on_s3
 
 audio_routes = Blueprint('audio', __name__)
@@ -9,6 +10,9 @@ audio_routes = Blueprint('audio', __name__)
 @audio_routes.route('/all')
 def send_audio():
     try:
+        ranking = db.session.query(Ranking).filter(
+            Ranking.table_name == 'audios').all()
+        print("ranking-->".ljust(20, "*"), ranking)
         audio_query_results = Audio.query.all()
         audio_files = jsonify(audio_query_results)
         return audio_files
@@ -17,8 +21,8 @@ def send_audio():
         return {"error": e.__dict__}
 
 
-@audio_routes.route('/<int:id>/delete')
-@login_required
+@ audio_routes.route('/<int:id>/delete')
+@ login_required
 def delete_audio(id):
     try:
         audio_file_to_delete = Audio.query.get(id)
