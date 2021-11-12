@@ -22,6 +22,7 @@ export default function VideoPlayer() {
   const [videoMessageId, setVideoMessageId] = useState(null);
   const [videoMessageType, setVideoMessageType] = useState(null);
   const [featuredVideoId, setFeaturedVideoId] = useState(null);
+  const [videoIdToEdit, setVideoIdToEdit] = useState();
 
   useEffect(() => {
     if (!videoData) {
@@ -88,6 +89,7 @@ export default function VideoPlayer() {
                       <div className="video__controls">
                         <EditIcon
                           onClick={() => {
+                            setVideoIdToEdit(video.id);
                             setVideoMessageId(i);
                             setVideoMessageType("EDIT");
                           }}
@@ -95,6 +97,7 @@ export default function VideoPlayer() {
                         />
                         <CancelIcon
                           onClick={() => {
+                            setVideoIdToEdit(video.id);
                             setVideoMessageId(i);
                             setVideoMessageType("DELETE");
                           }}
@@ -107,7 +110,7 @@ export default function VideoPlayer() {
                         <VideoMessage
                           type={videoMessageType}
                           setVideoMessageType={setVideoMessageType}
-                          idToEdit={video.id}
+                          idToEdit={videoIdToEdit}
                         />
                       </div>
                     )}
