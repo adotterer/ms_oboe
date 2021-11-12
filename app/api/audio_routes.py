@@ -13,13 +13,17 @@ def send_audio():
     try:
         ranking = db.session.query(Ranking).filter(
             Ranking.table_name == 'audios').all()
-        print("ranking-->".ljust(30, "*"), ranking)
-        print("ranking bool-->".ljust(30, "*"), bool(ranking))
+        print("ranking--->".rjust(30, "-"), ranking)
+        print("ranking bool--->".rjust(30, "-"), bool(ranking))
+        if ranking:
+            print("ranking truthy ")
+        if not ranking:
+            print("! NO RANKING !".center(50, "~"))
         audio_query_results = Audio.query.all()
         audio_files = jsonify(audio_query_results)
         return audio_files
     except Exception as e:
-        print("error----->>".ljust(20, "."), e)
+        print("error----->".rjust(20, "-"), e)
         return {"error": e.__dict__}
 
 
