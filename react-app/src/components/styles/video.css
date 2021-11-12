@@ -61,16 +61,12 @@
 }
 
 .video-responsive > iframe {
-  /* width: 853px; */
-  /* height: 480px; */
   width: 53rem;
   height: 33rem;
 }
 .video__list__item {
   flex: flex;
   flex-direction: column;
-
-  /* border: 1px solid rgb(32, 32, 32); */
 }
 .video__list__item img {
   margin: 0 auto;
@@ -141,7 +137,6 @@
     padding: 0.3em;
   }
   .play__icon {
-    /* top: 3rem; */
     font-size: 3.3em !important;
   }
   .video__caption {
