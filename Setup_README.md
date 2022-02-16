@@ -118,3 +118,6 @@ Tails:
 ```bash
 heroku logs --tail -a mshippoboe
 ```
+
+
+<!-- https://github.com/benoitc/gunicorn/issues/1801 : SOLVED UPLOAD TIMEOUT PROBLEM -->
