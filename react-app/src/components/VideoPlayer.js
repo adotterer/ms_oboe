@@ -38,7 +38,7 @@ export default function VideoPlayer() {
         >
           {videoData &&
             videoData.map((video, i) => {
-              return <VideoListenItem video={video} />;
+              return <VideoListenItem key={i + "video"} video={video} />;
             })}
           {authenticated && (
             <>
