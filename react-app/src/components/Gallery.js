@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import AuthContext from "./context/AuthContext";
-import "./styles/gallery.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ModalContext from "./context/ModalContext";
 import UploadImageModal from "./UploadImageModal";

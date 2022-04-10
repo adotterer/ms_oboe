@@ -1,12 +1,17 @@
 import React from "react";
-import bio from "./matt_rosie_profilepic.png";
-import "./styles/bio.css";
-
+import Image from "next/image";
+// import bio from "./matt_rosie_profilepic.png";
+const profilePic = "/matt_rosie_profilepic.png";
 export default function Bio() {
   return (
     <div id="div__bio_container">
       <div id="div__profilepic">
-        <img src={bio} id="img__profilepic" alt="Matt's profile" />
+        <Image
+          src={profilePic}
+          alt="Picture of the author"
+          width="130"
+          height="130"
+        />
       </div>
       <article id="article__bio">
         <h2>Oboe & English Horn</h2>

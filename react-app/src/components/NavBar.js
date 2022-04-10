@@ -1,30 +1,32 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import "./styles/navbar.css";
+import Link from 'next/link'
+// import { NavLink } from "react-router-dom";
+const BIO = "bio";
+const AUDIO = "audio";
+const GALLERY = "gallery";
+const VIDEO = "video";
+const LOGIN = "login";
+const LOGOUT = "logout";
 
 const NavBar = () => {
   return (
     <nav>
       <ul>
         <li>
-          <NavLink to="/" exact={true} activeClassName="active">
+          <Link href="/">
             Bio
-          </NavLink>
+          </Link>
         </li>
         <li>
-          <NavLink to="/gallery" exact={true} activeClassName="active">
+          <Link href="/gallery">
             Gallery
-          </NavLink>
+          </Link>
         </li>
         <li>
-          <NavLink to="/audio" exact={true} activeClassName="active">
             Audio
-          </NavLink>
         </li>
         <li>
-          <NavLink to="/video" exact={true} activeClassName="active">
             Video
-          </NavLink>
         </li>
       </ul>
     </nav>

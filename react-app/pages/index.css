@@ -1,5 +1,10 @@
 @import url("https://use.typekit.net/gau7dsu.css");
-@import url("./components/styles/modal.css");
+@import url("./styles/modal.css");
+@import url("./styles/bio.css");
+@import url("./styles/gallery.css");
+@import url("./styles/navbar.css");
+@import url("./styles/header.css");
+@import url("./styles/container.css");
 
 html,
 h1,
