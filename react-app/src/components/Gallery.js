@@ -18,6 +18,7 @@ export default function Gallery() {
   const [imageData, setImageData] = useState(null);
   const [galleryMessageType, setGalleryMessageType] = useState(null);
   const [galleryMessageId, setGalleryMessageId] = useState(null);
+  const [screenWidth, setScreenWidth] = useState(651)
 
   useEffect(() => {
     if (!imageData) {
@@ -29,6 +30,10 @@ export default function Gallery() {
     }
   }, [imageData]);
 
+  useEffect(() =>{
+    setScreenWidth(window.screen.width)
+  },[screenWidth])
+
   useEffect(() => {
     if (!galleryMessageType) setGalleryMessageId(null);
   }, [galleryMessageType]);
@@ -39,8 +44,8 @@ export default function Gallery() {
         style={{ margin: "0 auto" }}
         id="gallery__container"
         variant="quilted"
-        cols={window.screen.width > 650 ? 3 : 2}
-        rowHeight={window.screen.width > 650 ? 250 : 200}
+        cols={screenWidth > 650 ? 3 : 2}
+        rowHeight={screenWidth > 650 ? 250 : 200}
       >
         {imageData &&
           imageData.map((image, i) => {
