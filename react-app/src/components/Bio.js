@@ -12,7 +12,7 @@ export default function Bio() {
         <p>
           Matthew Shipp is among the top freelance oboists in the country. He
           regularly performs in venues across the country and abroad, most frequently
-          in Seattle, Philadelphia, and New York. Mr. Shipp has performed with The
+          in Seattle, Philadelphia, New York, and Iowa. Mr. Shipp has performed with The
           Philadelphia Orchestra, Pennsylvania Ballet Orchestra, Chamber
           Orchestra of Philadelphia, Princeton Symphony, Brooklyn Chamber
           Orchestra, and Symphony in C. As a guest musician, Mr. Shipp has
