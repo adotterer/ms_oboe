@@ -89,7 +89,7 @@ There is a layer in the Dockerfile that will install psycopg2 (not binary) for u
 8. Release your docker container to heroku
 
    ```bash
-   c {NAME_OF_HEROKU_APP}
+   heroku container:release web -a {NAME_OF_HEROKU_APP}
    ```
 
 9. set up your database:
