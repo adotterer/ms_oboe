@@ -12,6 +12,7 @@ function UsersList() {
       setUsers(responseData.users);
     }
     fetchData();
+    console.log("i am console logging to push a new image")
   }, []);
 
   const userComponents = users.map((user) => {
