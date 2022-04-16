@@ -5,6 +5,7 @@ function UsersList() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
+    // 
     async function fetchData() {
       const response = await fetch("/api/users/");
       const responseData = await response.json();
