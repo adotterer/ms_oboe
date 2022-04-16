@@ -5,14 +5,12 @@ function UsersList() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // 
     async function fetchData() {
       const response = await fetch("/api/users/");
       const responseData = await response.json();
       setUsers(responseData.users);
     }
     fetchData();
-    console.log("i am console logging to push a new image")
   }, []);
 
   const userComponents = users.map((user) => {
