@@ -1,18 +1,18 @@
 import React from "react";
-import bio from "./matt_rosie_profilepic.png";
 import "./styles/bio.css";
 
 export default function Bio() {
   return (
     <div id="div__bio_container">
       <div id="div__profilepic">
-        <img src={bio} id="img__profilepic" alt="Matt's profile" />
+        <img src={"https://mshippoboe.s3.us-west-1.amazonaws.com/matt_rosie_profilepic.png"} id="img__profilepic" alt="Matt's profile" />
       </div>
       <article id="article__bio">
         <h2>Oboe & English Horn</h2>
         <p>
-          Matthew Shipp lives in Philadelphia and works as a freelance oboist in
-          Philadelphia and New York City. Mr. Shipp has performed with The
+          Matthew Shipp is among the top freelance oboists in the country. He
+          regularly performs in venues across the country and abroad, most frequently
+          in Seattle, Philadelphia, and New York. Mr. Shipp has performed with The
           Philadelphia Orchestra, Pennsylvania Ballet Orchestra, Chamber
           Orchestra of Philadelphia, Princeton Symphony, Brooklyn Chamber
           Orchestra, and Symphony in C. As a guest musician, Mr. Shipp has
