@@ -26,6 +26,11 @@ const NavBar = () => {
             Video
           </NavLink>
         </li>
+        <li>
+          <NavLink to="https://reeds.adotterer.com/" exact={true} activeClassName="active">
+            Reeds & Cane
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
